@@ -136,7 +136,7 @@ Vue.use( VueResource );
 
 				startButton.addEventListener( 'click', function () {
 					showTheElement( document.querySelector( '.firstRender' ), false );
-					showTheElement( document.querySelector( '.application-wrapper' ), true );
+					showTheElement( document.querySelector( '.application' ), true );
 				} );
 
 				showTheElement( startButton, true );
