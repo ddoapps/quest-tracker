@@ -8,7 +8,8 @@ import { dataModel } from './assets/javascripts/models/dataModel.js';
 Vue.use( VueResource );
 
 ( function (window, document, undefined) {
-	const serviceWorkerLastModifiedKey = 'service-worker-last-modified';
+	const USE_REGISTERED_SERVICE_WORKER = 'use-existing-service-worker';
+	const SERVICE_WORKER_LAST_MODIFIED = 'service-worker-last-modified';
 
 	window.addEventListener( 'load', event => {
 		if ( theBrowserIsSupported() ) {
@@ -17,6 +18,14 @@ Vue.use( VueResource );
 			showTheElement( document.querySelector( '.firstRender .unsupportedBrowser' ), true );
 		}
 	} );
+
+	String.prototype.capitalize = function () {
+		if ( this && this.length ) {
+			return this[ 0 ].toUpperCase() + this.slice( 1 );
+		}
+
+		return this;
+	};
 
 	// ============================================================================================
 
@@ -43,12 +52,12 @@ Vue.use( VueResource );
 		return new Promise( ( resolve, reject ) => {
 			ajax( 'HEAD', './sw.js' ).then(
 				xhr => {
-					if ( xhr.getResponseHeader( 'last-modified' ) === localStorage.getItem( serviceWorkerLastModifiedKey ) ) {
+					if ( xhr.getResponseHeader( 'last-modified' ) === localStorage.getItem( SERVICE_WORKER_LAST_MODIFIED ) ) {
 						resolve();
 					} else {
 						reject();
 					}
-				}, reject );
+				}, () => reject( USE_REGISTERED_SERVICE_WORKER ) );
 		} );
 	}
 
@@ -60,12 +69,16 @@ Vue.use( VueResource );
 		showTheElement( document.querySelector( '.firstRender .checkForExistingApplication' ), true );
 
 		return new Promise( ( resolve, reject ) => {
-			const theServiceWorkIsNotRegistered = () => {
-				localStorage.removeItem( serviceWorkerLastModifiedKey );
-				reject();
+			const theServiceWorkIsNotRegistered = ( status ) => {
+				if ( status == USE_REGISTERED_SERVICE_WORKER ) {
+					resolve();
+				} else {
+					localStorage.removeItem( SERVICE_WORKER_LAST_MODIFIED );
+					reject();
+				}
 			};
 
-			if ( localStorage.getItem( serviceWorkerLastModifiedKey ) ) {
+			if ( localStorage.getItem( SERVICE_WORKER_LAST_MODIFIED ) ) {
 				checkIfTheServiceWorkerIsCurrentlyActivated().then(
 					() => checkIfTheServiceWorkerHasNotBeenUpdated().then( resolve, theServiceWorkIsNotRegistered )
 					, theServiceWorkIsNotRegistered
@@ -86,7 +99,7 @@ Vue.use( VueResource );
 				navigator.serviceWorker.register( './sw.js' ).then(
 					() => {
 						showTheElement( document.querySelector( '.firstRender .refreshPageForFirstRun' ), true );
-						localStorage.setItem( serviceWorkerLastModifiedKey, serviceWorkerLastModified );
+						localStorage.setItem( SERVICE_WORKER_LAST_MODIFIED, serviceWorkerLastModified );
 						setTimeout( () => window.location.reload(), 15000 );
 					}
 					, () => {

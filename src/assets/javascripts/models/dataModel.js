@@ -5,10 +5,14 @@ Vue.use( Vuex );
 
 export const dataModel = new Vuex.Store( {
 	state: {
-		theDisclaimerShouldBeShown: !localStorage.getItem( 'hideTheDisclaimer' )
+		quests: {}
+		, theDisclaimerShouldBeShown: !localStorage.getItem( 'hideTheDisclaimer' )
 	}
 	, getters: {
-		theDisclaimerShouldBeShown: function ( state ) {
+		quests: function ( state ) {
+			return state.quests;
+		}
+		, theDisclaimerShouldBeShown: function ( state ) {
 			return state.theDisclaimerShouldBeShown;
 		}
 	}
@@ -16,6 +20,9 @@ export const dataModel = new Vuex.Store( {
 		hideTheDisclaimer: function ( state ) {
 			state.theDisclaimerShouldBeShown = false;
 			localStorage.setItem( 'hideTheDisclaimer', 'true' );
+		}
+		, quests: function ( state, quests ) {
+			state.quests = quests;
 		}
 	}
 } );

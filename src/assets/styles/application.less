@@ -76,9 +76,39 @@
 // =================================== MEDIA QUERIES ====================================
 
 @media (max-width: 575px) {
+    .font-size-xs-sm { font-size: @base-font-size; }
+	.font-size-xs-md { font-size: @base-font-size * 2; }
+	.font-size-xs-lg { font-size: @base-font-size * 4; }
+    .font-size-xs-xl { font-size: @base-font-size * 8; }
+    
+    [class*='layout-col-xs-'] { display: inline-block; float: left; }
 
+    .layout-col-xs-2  { min-width: 16.66666%; max-width: 16.66666%; }
+    .layout-col-xs-6  { min-width: 50%; max-width: 50%; }
+    .layout-col-xs-10 { min-width: 83.33333%; max-width: 83.33333%; }
+    .layout-col-xs-12 { min-width: 100%; max-width: 100%; }
+
+    .by-level {
+        .quest-name, .quest-difficulty, .quest-experience { line-height: 18px; }
+        .quest-level { line-height: 36px; }
+    }
 }
 
 @media (min-width: 576px) {
 
+}
+
+
+
+
+
+
+// ===================================== TEMPORARY ======================================
+
+.by-level {
+    .quest { background-color: rgb(64, 64, 64); }
+    .quest:nth-of-type(2n) { background-color: rgb(32, 32, 32); }
+
+    .heroic { background-color: rgb(128, 0, 0); }
+    .epic { background-color: rgb(128, 0, 128); }
 }
