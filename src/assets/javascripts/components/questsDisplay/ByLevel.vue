@@ -7,8 +7,22 @@
             <div class="quest-name layout-col-xs-10 font-size-xs-sm" v-text="quest.name"></div>
 
             <div class="layout-col-xs-10">
-                <div class="quest-difficulty layout-col-xs-6 font-size-xs-sm" v-text="quest.difficulty"></div>
-                <div class="quest-experience layout-col-xs-6 font-size-xs-sm" v-text="quest.experience"></div>
+                <div class="quest-difficulty layout-col-xs-3" v-if="quest.casual">
+                    <div class="font-size-xs-sm">Casual</div>
+                    <div class="font-size-xs-sm" v-text="quest.casual.experience"></div>
+                </div>
+                <div class="quest-difficulty layout-col-xs-3" v-if="quest.normal">
+                    <div class="font-size-xs-sm">Normal</div>
+                    <div class="font-size-xs-sm" v-text="quest.normal.experience"></div>
+                </div>
+                <div class="quest-difficulty layout-col-xs-3" v-if="quest.hard">
+                    <div class="font-size-xs-sm">Hard</div>
+                    <div class="font-size-xs-sm" v-text="quest.hard.experience"></div>
+                </div>
+                <div class="quest-difficulty layout-col-xs-3" v-if="quest.elite">
+                    <div class="font-size-xs-sm">Elite</div>
+                    <div class="font-size-xs-sm" v-text="quest.elite.experience"></div>
+                </div>
             </div>
         </div>
 
@@ -19,8 +33,22 @@
             <div class="quest-name layout-col-xs-10 font-size-xs-sm" v-text="quest.name"></div>
 
             <div class="layout-col-xs-10">
-                <div class="quest-difficulty layout-col-xs-6 font-size-xs-sm" v-text="quest.difficulty"></div>
-                <div class="quest-experience layout-col-xs-6 font-size-xs-sm" v-text="quest.experience"></div>
+                <div class="quest-difficulty layout-col-xs-3" v-if="quest.casual">
+                    <div class="font-size-xs-sm">Casual</div>
+                    <div class="font-size-xs-sm" v-text="quest.casual.experience"></div>
+                </div>
+                <div class="quest-difficulty layout-col-xs-3" v-if="quest.normal">
+                    <div class="font-size-xs-sm">Normal</div>
+                    <div class="font-size-xs-sm" v-text="quest.normal.experience"></div>
+                </div>
+                <div class="quest-difficulty layout-col-xs-3" v-if="quest.hard">
+                    <div class="font-size-xs-sm">Hard</div>
+                    <div class="font-size-xs-sm" v-text="quest.hard.experience"></div>
+                </div>
+                <div class="quest-difficulty layout-col-xs-3" v-if="quest.elite">
+                    <div class="font-size-xs-sm">Elite</div>
+                    <div class="font-size-xs-sm" v-text="quest.elite.experience"></div>
+                </div>
             </div>
         </div>
     </section>
@@ -42,25 +70,30 @@
             }
         }
         , methods: {
-            quests: function ( quests, type ) {
+            quests: function ( quests, heroicOrEpic ) {
                 var results = [];
 
                 Object.keys( quests ).forEach( function ( questKey ) {
                     var quest = quests[ questKey ];
-                    var questType = quest[ type ] || {};
+                    var questType = quest[ heroicOrEpic ] || {};
 
-                    Object.keys( questType ).forEach( function ( difficulty ) {
-                        var questTypeDifficulty = questType[ difficulty ];
-
-                        results.push( {
-                            id: questKey + type + difficulty
-                            , type: type.capitalize()
-                            , level: questTypeDifficulty.level
+                    if ( Object.values( questType ).length ) {
+                        var result = {
+                            id: questKey + heroicOrEpic
                             , name: quest.name
-                            , difficulty: difficulty.capitalize()
-                            , experience: questTypeDifficulty.xp
+                            , level: ( questType.normal || questType.casual ).level
+                        };
+
+                        Object.keys( questType ).forEach( function ( difficultyKey, index ) {
+                            var difficulty = questType[ difficultyKey ];
+
+                            result[ difficultyKey ] = {
+                                experience: difficulty.xp
+                            };
                         } );
-                    } );
+
+                        results.push( result );
+                    }
                 } );
 
                 results.sort( function ( a, b ) {

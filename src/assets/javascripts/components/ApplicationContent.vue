@@ -1,5 +1,5 @@
 <template>
-    <main class="application-content center layout-container-margin position-absolute">
+    <main class="application-content center layout-container-margin position-absolute position-top">
         <disclaimer v-if="theDisclaimerShouldBeShown"></disclaimer>
         <quests-by-level v-if="!theDisclaimerShouldBeShown"></quests-by-level>
     </main>
