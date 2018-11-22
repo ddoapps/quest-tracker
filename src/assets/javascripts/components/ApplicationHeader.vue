@@ -1,11 +1,7 @@
 <template>
     <header class="application-header background-color-dark-gray-1 font-color-white layout-container position-bottom position-fixed" aria-hidden="true">
         <nav class="layout-row">
-            <div class="layout-col-xs-2 background-color-dark-gray-0 text-center">
-                <i class="font-size-xs-md icon-list-bullet line-height-3" title="Main Menu"></i>
-            </div>
-
-            <div class="layout-col-xs-10">
+            <div class="layout-col-xs-12">
                 <div class="main-menu-prev layout-col-xs-1 line-height-3">
                     <i class="layout-col-xs-12 background-color-dark-gray-2 font-size-xs-md icon icon-left-open"></i>
                 </div>

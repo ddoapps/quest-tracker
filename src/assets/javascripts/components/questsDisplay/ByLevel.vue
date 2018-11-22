@@ -63,9 +63,11 @@
         }
         , computed: {
             epicQuests: function () {
+                console.log( 'computing' );
                 return this.quests( this.$store.getters.quests, 'epic' );
             }
             , heroicQuests: function () {
+                console.log( 'computing' );
                 return this.quests( this.$store.getters.quests, 'heroic' );
             }
         }
