@@ -14,8 +14,6 @@
 
 // ===================================== SINGLETONS =====================================
 
-[class^="icon-"]:before, [class*=" icon-"]:before { margin: 0 !important; }
-
 .application { z-index: 0; }
 .application-content { z-index: 100; }
 .application-header { z-index: 200; }
@@ -36,6 +34,7 @@
 .font-size-inherit { font-size: inherit; }
 .font-style-normal { font-style: normal; }
 .line-height-2 { line-height: 2; }
+.line-height-3 { line-height: 3; }
 .no-float { float: none !important; }
 .no-list { list-style-type: none; }
 .no-padding { padding: 0; }
@@ -78,11 +77,14 @@
 @media (max-width: 575px) {
     .application {
         .application-content {
-            bottom: @base-font-size * 3.5 + 7;
+            bottom: @base-font-size * 5.5 + 7;
             overflow-y: auto;
         }
 
         .application-header {
+            .icon-left-open:before, .icon-right-open:before { margin: 0 !important; }
+            .icon-right-open:before { margin-left: 1px !important }
+
             .main-menu {
                 .item {
                     border-left: 2px solid @color-dark-gray-0;
