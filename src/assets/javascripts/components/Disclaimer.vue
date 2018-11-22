@@ -1,5 +1,5 @@
 <template>
-    <section class="disclaimer background-color-dark-gray-1 border border-color-dark-gray-2 border-radius-4 border-width-2 font-color-gray-0 layout-row">
+    <section class="disclaimer background-color-dark-gray-2 border border-color-dark-gray-3 border-radius-4 border-width-2 font-color-gray-0 layout-row">
         <div class="padding-4">
             <p class="font-size-3 no-margin">
                 <em class="font-color-yellow font-style-normal">DDO Quest Tracker</em> is a fan site for the MMORPG <a href="http://www.ddo.com/" target="_new" class="external-link no-wrap">Dungeons &amp; Dragons Online</a>.
