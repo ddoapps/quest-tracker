@@ -7,11 +7,11 @@
                 </div>
 
                 <ul class="main-menu layout-col-xs-10 line-height-3 no-list no-padding no-wrap overflow-x-auto">
-                    <li class="item layout-col-xs-5 text-center font-size-xs-md no-float">All</li>
-                    <li class="item layout-col-xs-6 text-center font-size-xs-md no-float">Heroic</li>
-                    <li class="item layout-col-xs-5 text-center font-size-xs-md no-float">Epic</li>
-                    <li class="item layout-col-xs-5 text-center font-size-xs-md no-float">Sagas</li>
-                    <li class="item layout-col-xs-8 text-center font-size-xs-md no-float">Characters</li>
+                    <li class="item layout-col-xs-5 text-center font-size-xs-md no-float" v-on:click="showAllQuests">All</li>
+                    <li class="item layout-col-xs-6 text-center font-size-xs-md no-float" v-on:click="showHeroicQuests">Heroic</li>
+                    <li class="item layout-col-xs-5 text-center font-size-xs-md no-float" v-on:click="showEpicQuests">Epic</li>
+                    <li class="item layout-col-xs-5 text-center font-size-xs-md no-float" v-on:click="showSagas">Sagas</li>
+                    <li class="item layout-col-xs-8 text-center font-size-xs-md no-float" v-on:click="showCharacters">Characters</li>
                 </ul>
 
                 <div class="main-menu-next layout-col-xs-1 line-height-3">
@@ -24,7 +24,22 @@
 
 <script>
     export default {
-        components: {
+        methods: {
+            showAllQuests: function () {
+                this.$store.commit( 'changeTheQuestView', 'all' );
+            }
+            , showCharacters: function () {
+                this.$store.commit( 'changeTheQuestView', 'characters' );
+            }
+            , showEpicQuests: function () {
+                this.$store.commit( 'changeTheQuestView', 'epic' );
+            }
+            , showHeroicQuests: function () {
+                this.$store.commit( 'changeTheQuestView', 'heroic' );
+            }
+            , showSagas: function () {
+                this.$store.commit( 'changeTheQuestView', 'sagas' );
+            }
         }
     }
 </script>
