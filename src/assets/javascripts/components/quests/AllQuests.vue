@@ -1,6 +1,9 @@
 <template>
     <section class="all-quests">
-        <quest v-for="quest in quests" :key="quest.id" :quest="quest"></quest>
+        <h1 class="layout-col-xs-12 font-size-xs-md font-color-yellow">Heroic</h1>
+        <quest v-for="quest in heroicQuests" :key="quest.id +'heroic'" :quest="quest" questType="heroic"></quest>
+        <h1 class="layout-col-xs-12 font-size-xs-md font-color-yellow">Epic</h1>
+        <quest v-for="quest in epicQuests" :key="quest.id +'epic'" :quest="quest" questType="epic"></quest>
     </section>
 </template>
 
@@ -19,8 +22,35 @@
             } );
         }
         , computed: {
-            quests: function () {
-                return this.$store.getters.quests;
+            epicQuests: function () {
+                return this.sortByLevelAndName(
+                    this.$store.getters.quests.filter(
+                        function ( quest ) {
+                            return !!quest.epic;
+                        }
+                    )
+                    , 'epic'
+                );
+            }
+            , heroicQuests: function () {
+                return this.sortByLevelAndName(
+                    this.$store.getters.quests.filter(
+                        function ( quest ) {
+                            return !!quest.heroic;
+                        }
+                    )
+                    , 'heroic'
+                );
+            }
+        }
+        , methods: {
+            sortByLevelAndName: function ( quests, questType ) {
+                return quests.sort( function ( a, b ) {
+                    var aLevel = ( a[ questType ].normal || a[ questType ].casual ).level;
+                    var bLevel = ( b[ questType ].normal || b[ questType ].casual ).level;
+
+                    return aLevel - bLevel || a.name.localeCompare( b.name );
+                } );
             }
         }
     }
