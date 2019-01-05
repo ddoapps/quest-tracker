@@ -1,12 +1,35 @@
 workbox.skipWaiting();
 workbox.clientsClaim();
 
-self.__precacheManifest = [].concat(self.__precacheManifest || []);
-workbox.precaching.suppressWarnings();
-workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
+( function () { //IIFE just for code collapsing
+	let currentCacheNames = Object.assign(
+		{ precacheTemp: workbox.core.cacheNames.precache + "-temp" }
+		, workbox.core.cacheNames
+	);
 
-workbox.routing.registerRoute(/^http[s]?:\/\/fonts.googleapis.com\/(.*)/, workbox.strategies.staleWhileRevalidate(), 'GET');
-workbox.routing.registerRoute(/^http[s]?:\/\/fonts.gstatic.com\/(.*)/, workbox.strategies.staleWhileRevalidate(), 'GET');
+	self.addEventListener( 'activate', function ( event ) {
+		event.waitUntil(
+			caches.keys().then( function ( cacheNames ) {
+				let validCacheSet = new Set( Object.values( currentCacheNames ) );
+
+				return Promise.all(
+					cacheNames.filter( function ( cacheName ) {
+						return !validCacheSet.has(cacheName);
+					} ).map( function ( cacheName ) {
+						return caches.delete( cacheName );
+					} )
+				);
+			})
+		);
+	});
+
+	self.__precacheManifest = [].concat(self.__precacheManifest || []);
+	workbox.precaching.suppressWarnings();
+	workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
+
+	workbox.routing.registerRoute(/^http[s]?:\/\/fonts.googleapis.com\/(.*)/, workbox.strategies.staleWhileRevalidate(), 'GET');
+	workbox.routing.registerRoute(/^http[s]?:\/\/fonts.gstatic.com\/(.*)/, workbox.strategies.staleWhileRevalidate(), 'GET');
+}() );
 
 ( function () {
 	function DBCollection ( databasePromise, collectionName ) {
@@ -79,10 +102,12 @@ workbox.routing.registerRoute(/^http[s]?:\/\/fonts.gstatic.com\/(.*)/, workbox.s
 	
 	let QuestTracker = ( function () {
 		var database;
+		var allQuestsPromise;
 	
 		var functions = {
 			retrieveQuests: function () {
-				return new Promise( function ( resolve, reject ) {
+				console.log( 'query cache' );
+				return allQuestsPromise = new Promise( function ( resolve, reject ) {
 					caches.open( workbox.core.cacheNames.precache ).then( function ( cache ) {
 						cache.keys().then( function ( cacheKeys ) {
 							var questsKey = cacheKeys.find( function ( element ) {
@@ -107,7 +132,7 @@ workbox.routing.registerRoute(/^http[s]?:\/\/fonts.gstatic.com\/(.*)/, workbox.s
 			}
 			, searchForQuests: function ( searchCriteria ) {
 				return new Promise( function ( resolve, reject ) {
-					functions.retrieveQuests().then(
+					( allQuestsPromise || functions.retrieveQuests() ).then(
 						function ( quests ) {
 							var results = [];
 
