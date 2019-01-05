@@ -98,9 +98,14 @@ Vue.use( VueResource );
 
 				navigator.serviceWorker.register( './sw.js' ).then(
 					() => {
-						showTheElement( document.querySelector( '.firstRender .refreshPageForFirstRun' ), true );
+						showTheElement( document.querySelector( '.firstRender .applicationRegistrationSuccess' ), true );
+
+						var refreshButton = document.querySelector( '.firstRender .refreshButton' );
+
+						refreshButton.addEventListener( 'click', function () { window.location.reload(); } );
+
+						showTheElement( refreshButton, true );
 						localStorage.setItem( SERVICE_WORKER_LAST_MODIFIED, serviceWorkerLastModified );
-						setTimeout( () => window.location.reload(), 15000 );
 					}
 					, () => {
 						showTheElement( document.querySelector( '.firstRender .applicationRegistrationFailure' ), true );
@@ -115,9 +120,11 @@ Vue.use( VueResource );
 
 	function showTheElement ( element, showTheElement ) {
 		if ( showTheElement ) {
+			element.classList.add( 'fade-in' );
 			element.classList.remove( 'display-none' );
 		} else {
 			element.classList.add( 'display-none' );
+			element.classList.remove( 'fade-in' );
 		}
 	
 		element.setAttribute( 'aria-hidden', !showTheElement );
