@@ -1,27 +1,51 @@
 <template>
-    <div class="quest layout-col-xs-12">
-        <div class="quest-level layout-col-xs-2 font-size-xs-sm" v-text="level()"></div>
-        <div class="quest-name layout-col-xs-10 font-size-xs-sm" v-text="name()"></div>
-
-        <div class="layout-col-xs-10">
-            <div class="quest-difficulty layout-col-xs-3" v-if="casual()">
-                <div class="font-size-xs-sm">Casual</div>
-                <div class="font-size-xs-sm" v-text="casual().xp"></div>
+    <div class="by-level" :class="questType">
+        <div class="quest layout-row">
+            <div class="layout-col-xs-12">
+                <div class="layout-col-xs-1">&nbsp;</div>
+                <div class="layout-col-xs-11"><span class="quest-name border-radius-4 display-inline-block font-size-xs-sm" v-text="name()"></span></div>
             </div>
 
-            <div class="quest-difficulty layout-col-xs-3" v-if="normal()">
-                <div class="font-size-xs-sm">Normal</div>
-                <div class="font-size-xs-sm" v-text="normal().xp"></div>
-            </div>
+            <div class="layout-col-xs-12">
+                <div class="layout-col-xs-1 vertical-align-top"><span class="quest-level display-block font-size-xs-sm" v-text="level()"></span></div>
 
-            <div class="quest-difficulty layout-col-xs-3" v-if="hard()">
-                <div class="font-size-xs-sm">Hard</div>
-                <div class="font-size-xs-sm" v-text="hard().xp"></div>
-            </div>
+                <div class="layout-col-xs-11">
+                    <div class="layout-row">
+                        <div class="layout-col-xs-3">
+                            <div class="quest-difficulty font-size-xs-sm">Casual</div>
+                        </div>
 
-            <div class="quest-difficulty layout-col-xs-3" v-if="elite()">
-                <div class="font-size-xs-sm">Elite</div>
-                <div class="font-size-xs-sm" v-text="elite().xp"></div>
+                        <div class="layout-col-xs-3">
+                            <div class="quest-difficulty font-size-xs-sm">Normal</div>
+                        </div>
+
+                        <div class="layout-col-xs-3">
+                            <div class="quest-difficulty font-size-xs-sm">Hard</div>
+                        </div>
+
+                        <div class="layout-col-xs-3">
+                            <div class="quest-difficulty font-size-xs-sm last">Elite</div>
+                        </div>
+                    </div>
+
+                    <div class="layout-row">
+                        <div class="layout-col-xs-3">
+                            <div class="quest-xp font-size-xs-sm" v-html="casual().xp"></div>
+                        </div>
+
+                        <div class="layout-col-xs-3">
+                            <div class="quest-xp font-size-xs-sm" v-html="normal().xp"></div>
+                        </div>
+
+                        <div class="layout-col-xs-3">
+                            <div class="quest-xp font-size-xs-sm" v-html="hard().xp"></div>
+                        </div>
+
+                        <div class="layout-col-xs-3">
+                            <div class="quest-xp font-size-xs-sm last" v-html="elite().xp"></div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -32,13 +56,13 @@
         props: [ 'quest', 'questType' ]
         , methods: {
             casual: function () {
-                return this.questByType().casual;
+                return this.questByType().casual || { xp: '&nbsp;' };
             }
             , elite: function () {
-                return this.questByType().elite;
+                return this.questByType().elite || { xp: '&nbsp;' };
             }
             , hard: function () {
-                return this.questByType().hard;
+                return this.questByType().hard || { xp: '&nbsp;' };
             }
             , level: function () {
                 var questByType = this.questByType();
@@ -49,7 +73,7 @@
                 return this.$options.propsData.quest.name;
             }
             , normal: function () {
-                return this.questByType().normal;
+                return this.questByType().normal || { xp: '&nbsp;' };
             }
             , questByType: function () {
                 var props = this.$options.propsData;

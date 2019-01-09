@@ -106,7 +106,6 @@ workbox.clientsClaim();
 	
 		var functions = {
 			retrieveQuests: function () {
-				console.log( 'query cache' );
 				return allQuestsPromise = new Promise( function ( resolve, reject ) {
 					caches.open( workbox.core.cacheNames.precache ).then( function ( cache ) {
 						cache.keys().then( function ( cacheKeys ) {

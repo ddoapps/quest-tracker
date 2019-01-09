@@ -1,8 +1,6 @@
 <template>
     <section class="all-quests">
-        <h1 class="layout-col-xs-12 font-size-xs-md font-color-yellow">Heroic</h1>
         <quest v-for="quest in heroicQuests" :key="quest.id +'heroic'" :quest="quest" questType="heroic"></quest>
-        <h1 class="layout-col-xs-12 font-size-xs-md font-color-yellow">Epic</h1>
         <quest v-for="quest in epicQuests" :key="quest.id +'epic'" :quest="quest" questType="epic"></quest>
     </section>
 </template>

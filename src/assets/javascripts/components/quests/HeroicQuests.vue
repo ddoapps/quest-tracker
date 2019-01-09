@@ -1,6 +1,5 @@
 <template>
     <section class="heroic-quests">
-        <h1 class="layout-col-xs-12 font-size-xs-md font-color-yellow">Heroic</h1>
         <quest v-for="quest in quests" :key="quest.id" :quest="quest" questType="heroic"></quest>
     </section>
 </template>

@@ -5,8 +5,8 @@
 @color-dark-gray-4: lighten(@color-dark-gray-1, 12%);
 @color-gray-0: rgb(192, 192, 192);
 @color-light-black: rgb(16, 16, 16);
-@color-light-blue-1: rgb(135, 206, 235);
-@color-light-blue-2: lighten(@color-light-blue-1, 4%);
+@color-light-blue-0: rgb(6, 149, 217);
+@color-light-blue-1: lighten(@color-light-blue-0, 4%);
 @color-yellow: rgb(160, 160, 0);
 
 //FONT SIZES
@@ -23,6 +23,9 @@
 .border { border-style: solid; }
 .border-color-dark-gray-3 { border-color: @color-dark-gray-3; }
 .border-width-2 { border-width: 2px; }
+.display-table-column { display: table-column; }
+.display-table-row { display: table-row; }
+.display-table { display: table; }
 .font-color-gray-0 { color: @color-gray-0; }
 .font-color-inherit { color: inherit; }
 .font-color-yellow { color: @color-yellow; }
@@ -33,8 +36,6 @@
 .font-size-5 { font-size: @base-font-size * 2; }
 .font-size-inherit { font-size: inherit; }
 .font-style-normal { font-style: normal; }
-.line-height-2 { line-height: 2; }
-.line-height-3 { line-height: 3; }
 .no-float { float: none !important; }
 .no-list { list-style-type: none; }
 .no-padding { padding: 0; }
@@ -44,6 +45,9 @@
 .position-bottom { bottom: 0; }
 .position-fixed { left: 0; position: fixed; }
 .position-top { top: 0; }
+.text-indent-8 { text-indent: 8px; }
+.vertical-align-bottom { vertical-align: bottom; }
+.vertical-align-top { vertical-align: top; }
 
 // ==================================== APPLICATION =====================================
 
@@ -63,12 +67,38 @@
             }
 
             .external-link {
-                color: @color-light-blue-1;
+                color: @color-light-blue-0;
 
                 &:active, &:hover {
-                    color: @color-light-blue-2;
+                    color: @color-light-blue-1;
                     font-weight: bold;
                 }
+            }
+        }
+    }
+
+    .by-level {
+        .quest {
+            color: rgb( 244, 244, 244); //TODO: remove this
+            margin-bottom: 8px;
+
+            .quest-difficulty, .quest-level, .quest-xp {
+                border: 2px solid @color-gray-0;
+                border-right-width: 0;
+
+                &.last { border-right-width: 2px; }
+            }
+
+            .quest-difficulty.last { border-top-right-radius: 4px; }
+            .quest-level { border-top-left-radius: 4px; border-bottom-left-radius: 4px; min-height: 36px; }
+            .quest-xp { border-top-width: 0; }
+            .quest-xp.last { border-bottom-right-radius: 4px; }
+
+            .quest-name {
+                border: 2px solid @color-gray-0;
+                border-bottom-width: 0;
+                border-bottom-left-radius: 0;
+                border-bottom-right-radius: 0;
             }
         }
     }
@@ -97,12 +127,6 @@
             }
         }
     }
-
-
-    .by-level {
-        .quest-name, .quest-difficulty, .quest-experience { line-height: 1.5; }
-        .quest-level { line-height: 3; text-align: center; }
-    }
 }
 
 // ====================================== LAYOUTS =======================================
@@ -117,25 +141,23 @@
 	.font-size-xs-lg { font-size: @base-font-size * 4; }
     .font-size-xs-xl { font-size: @base-font-size * 8; }
     
-    [class*='layout-col-xs-'] { display: inline-block; float: left; }
+    [class*='layout-col-xs-'] { display: inline-block; }
 
-    .layout-col-xs-1  { min-width: 8.33333%; max-width: 8.33333%; }
+    .layout-col-xs-1  { min-width:  8.33333%; max-width:  8.33333%; }
+    .layout-col-xs-11 { min-width: 91.57777%; max-width: 91.57777%; }
+
     .layout-col-xs-2  { min-width: 16.66666%; max-width: 16.66666%; }
+    .layout-col-xs-10 { min-width: 83.13333%; max-width: 83.13333%; }
+
     .layout-col-xs-3  { min-width: 25%; max-width: 25%; }
+    .layout-col-xs-9  { min-width: 75%; max-width: 75%; }
+
     .layout-col-xs-4  { min-width: 33.33333%; max-width: 33.33333%; }
+    .layout-col-xs-8  { min-width: 66.46666%; max-width: 66.46666%; }
+
     .layout-col-xs-5  { min-width: 41.66666%; max-width: 41.66666%; }
+    .layout-col-xs-7  { min-width: 58.13333%; max-width: 58.13333%; }
+
     .layout-col-xs-6  { min-width: 50%; max-width: 50%; }
-    .layout-col-xs-8  { min-width: 66.66666%; max-width: 66.66666%; }
-    .layout-col-xs-10 { min-width: 83.33333%; max-width: 83.33333%; }
     .layout-col-xs-12 { min-width: 100%; max-width: 100%; }
-}
-
-// ===================================== TEMPORARY ======================================
-
-.all-quests, .epic-quests, .heroic-quests {
-    .quest { background-color: rgb(64, 64, 64); color: rgb(255, 255, 255); }
-    .quest:nth-of-type(2n) { background-color: rgb(32, 32, 32); }
-
-    .heroic { background-color: rgb(128, 0, 0); }
-    .epic { background-color: rgb(128, 0, 128); }
 }

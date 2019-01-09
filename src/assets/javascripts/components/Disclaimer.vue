@@ -10,7 +10,7 @@
             </p>
 
             <div class="close-container text-center">
-                <button class="close border-radius-4 font-color-inherit font-size-5 line-height-2" aria-label="Continue.  Click this button to continue to the application." @click="closeTheDisclaimer">Continue</button>
+                <button class="close border-radius-4 font-color-inherit font-size-5 line-height-3" aria-label="Continue.  Click this button to continue to the application." @click="closeTheDisclaimer">Continue</button>
             </div>
         </div>
     </section>
