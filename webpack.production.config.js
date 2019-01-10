@@ -4,6 +4,7 @@ const htmlPlugin = require( 'html-webpack-plugin' );
 const path = require( 'path' );
 const webpack = require( 'webpack' );
 const workboxPlugin = require( 'workbox-webpack-plugin' );
+const MiniCssExtractPlugin = require( 'mini-css-extract-plugin' );
 
 module.exports = {
 	entry: './src/application.js',
@@ -12,11 +13,7 @@ module.exports = {
 		rules: [
 			{
 				test: /\.less$/,
-				use: [
-					{ loader: "style-loader" },
-					{ loader: "css-loader" },
-					{ loader: "less-loader" }
-				]
+				use: [ 'style-loader', MiniCssExtractPlugin.loader, 'css-loader', 'less-loader' ]
 			},
 			{
 				test: /\.js$/,
@@ -41,6 +38,10 @@ module.exports = {
 			'process.env': {
 				NODE_ENV: '"production"'
 			}
+		} ),
+		new MiniCssExtractPlugin( {
+			filename: "[name].css",
+			chunkFilename: "[id].css"
 		} ),
 		new cleanPlugin( [ 'dist' ] ),
 		new htmlPlugin( {
