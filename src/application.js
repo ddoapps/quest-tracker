@@ -131,11 +131,19 @@ Vue.use( VueResource );
 	}
 	
 	function theBrowserIsSupported () {
-		return (
-			'serviceWorker' in navigator
-			&& 'localStorage' in window
-			&& 'Promise' in window
-		);
+		let serviceWorkersEnabled = ( 'serviceWorker' in navigator );
+		let localStorageEnabled = ( 'localStorage' in window );
+		let promisesEnabled = ( 'Promise' in window );
+
+		if ( window.location.hash === '#debug' ) {
+			alert(
+				'Service Workers: '+ serviceWorkersEnabled +'\n'
+				+'Local Storage: '+ localStorageEnabled +'\n'
+				+'Promises: '+ promisesEnabled
+			);
+		}
+
+		return ( serviceWorkersEnabled && localStorageEnabled && promisesEnabled );
 	}
 
 	function initializeTheApplication () {
