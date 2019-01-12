@@ -1,52 +1,19 @@
 <template>
-    <div class="by-level" :class="questType">
-        <div class="quest layout-row">
-            <div class="layout-col-xs-12">
-                <div class="layout-col-xs-1">&nbsp;</div>
-                <div class="layout-col-xs-11"><span class="quest-name border-radius-4 display-inline-block font-size-xs-sm" v-text="name()"></span></div>
-            </div>
+    <div class="font-color-white-0 font-size-0 layout-col-xs-12 margin-top-8px">
+        <div class="font-size-100 font-weight-bold layout-col-xs-1 text-center" v-text="questType[ 0 ].toUpperCase()"></div>
+        <div :class="questType +'-background-color-dark-red-8 '+ questType +'-background-color-dark-purple-8'" class="border-top-left-radius-4px border-top-right-radius-4px font-size-150 layout-col-xs-11 text-indent-4px" v-text="name()"></div>
+        <div :class="questType +'-background-color-dark-red-8 '+ questType +'-background-color-dark-purple-8'" class="border-bottom-left-radius-4px border-top-left-radius-4px font-size-100 layout-col-xs-1 line-height-2-9 text-center vertical-align-top" v-text="level()"></div>
 
-            <div class="layout-col-xs-12">
-                <div class="layout-col-xs-1 vertical-align-top"><span class="quest-level display-block font-size-xs-sm" v-text="level()"></span></div>
+        <div class="layout-col-xs-11">
+            <div :class="questType +'-background-color-dark-red-3 '+ questType +'-background-color-dark-purple-3'" class="font-size-100 font-weight-bold layout-col-xs-3 text-indent-4px">Casual</div>
+            <div :class="questType +'-background-color-dark-red-0 '+ questType +'-background-color-dark-purple-0'" class="font-size-100 font-weight-bold layout-col-xs-3 text-indent-4px">Normal</div>
+            <div :class="questType +'-background-color-dark-red-3 '+ questType +'-background-color-dark-purple-3'" class="font-size-100 font-weight-bold layout-col-xs-3 text-indent-4px">Hard</div>
+            <div :class="questType +'-background-color-dark-red-0 '+ questType +'-background-color-dark-purple-0'" class="font-size-100 font-weight-bold layout-col-xs-3 text-indent-4px">Elite</div>
 
-                <div class="layout-col-xs-11">
-                    <div class="layout-row">
-                        <div class="layout-col-xs-3">
-                            <div class="quest-difficulty font-size-xs-sm">Casual</div>
-                        </div>
-
-                        <div class="layout-col-xs-3">
-                            <div class="quest-difficulty font-size-xs-sm">Normal</div>
-                        </div>
-
-                        <div class="layout-col-xs-3">
-                            <div class="quest-difficulty font-size-xs-sm">Hard</div>
-                        </div>
-
-                        <div class="layout-col-xs-3">
-                            <div class="quest-difficulty font-size-xs-sm last">Elite</div>
-                        </div>
-                    </div>
-
-                    <div class="layout-row">
-                        <div class="layout-col-xs-3">
-                            <div class="quest-xp font-size-xs-sm" v-html="casual().xp"></div>
-                        </div>
-
-                        <div class="layout-col-xs-3">
-                            <div class="quest-xp font-size-xs-sm" v-html="normal().xp"></div>
-                        </div>
-
-                        <div class="layout-col-xs-3">
-                            <div class="quest-xp font-size-xs-sm" v-html="hard().xp"></div>
-                        </div>
-
-                        <div class="layout-col-xs-3">
-                            <div class="quest-xp font-size-xs-sm last" v-html="elite().xp"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <div :class="questType +'-background-color-dark-red-3 '+ questType +'-background-color-dark-purple-3'" class="font-size-100 layout-col-xs-3 text-indent-4px" v-html="casual().xp"></div>
+            <div :class="questType +'-background-color-dark-red-0 '+ questType +'-background-color-dark-purple-0'" class="font-size-100 layout-col-xs-3 text-indent-4px" v-html="normal().xp"></div>
+            <div :class="questType +'-background-color-dark-red-3 '+ questType +'-background-color-dark-purple-3'" class="font-size-100 layout-col-xs-3 text-indent-4px" v-html="hard().xp"></div>
+            <div :class="questType +'-background-color-dark-red-0 '+ questType +'-background-color-dark-purple-0'" class="border-bottom-right-radius-4px font-size-100 layout-col-xs-3 text-indent-4px" v-html="elite().xp"></div>
         </div>
     </div>
 </template>

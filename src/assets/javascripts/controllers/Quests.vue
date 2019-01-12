@@ -1,5 +1,5 @@
 <template>
-	<section class="quests">
+	<section>
         <all-quests v-if="questView() === 'all'"></all-quests>
         <heroic-quests v-if="questView() === 'heroic'"></heroic-quests>
         <epic-quests v-if="questView() === 'epic'"></epic-quests>

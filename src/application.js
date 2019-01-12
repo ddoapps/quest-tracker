@@ -155,7 +155,9 @@ Vue.use( VueResource );
 				let startButton = document.querySelector( '.firstRender .startButton' );
 
 				startButton.addEventListener( 'click', function () {
-					showTheElement( document.querySelector( '.firstRender' ), false );
+					let firstRender = document.querySelector( '.firstRender' );
+
+					firstRender.parentNode.removeChild( firstRender );
 					showTheElement( document.querySelector( '.application' ), true );
 				} );
 

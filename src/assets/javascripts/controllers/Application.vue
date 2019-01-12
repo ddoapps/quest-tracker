@@ -1,5 +1,5 @@
 <template>
-	<section class="application display-none" aria-hidden="true">
+	<section class="application display-none z-index-0" aria-hidden="true">
 		<application-header v-if="showTheHeader"></application-header>
 		<application-content></application-content>
 	</section>

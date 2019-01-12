@@ -1,23 +1,23 @@
 <template>
-    <header class="application-header background-color-dark-gray-1 font-color-white layout-container position-bottom position-fixed" aria-hidden="true">
-        <nav class="layout-row">
-            <div class="layout-col-xs-12">
-                <div class="main-menu-prev layout-col-xs-1 line-height-3">
-                    <i class="layout-col-xs-12 background-color-dark-gray-2 font-size-xs-md icon icon-left-open"></i>
-                </div>
+    <header class="background-color-dark-gray-3 display-block font-color-white-0 max-width-100vw min-width-100vw position-bottom position-fixed z-index-200" aria-hidden="true">
+        <nav>
+            <ul class="font-size-0 max-width-100vw min-width-100vw no-list no-margin no-padding">
+                <li class="layout-col-xs-1 line-height-3">
+                    <i class="before-margin-left-2px layout-col-xs-12 background-color-dark-gray-8 font-size-xs-md icon icon-left-open"></i>
+                </li>
 
-                <div class="main-menu layout-col-xs-10 line-height-3 no-wrap overflow-x-auto vertical-align-bottom">
-                    <div class="item layout-col-xs-5 text-center font-size-xs-md" v-on:click="showAllQuests">All</div>
-                    <div class="item layout-col-xs-6 text-center font-size-xs-md" v-on:click="showHeroicQuests">Heroic</div>
-                    <div class="item layout-col-xs-5 text-center font-size-xs-md" v-on:click="showEpicQuests">Epic</div>
-                    <div class="item layout-col-xs-5 text-center font-size-xs-md" v-on:click="showSagas">Sagas</div>
-                    <div class="item layout-col-xs-8 text-center font-size-xs-md" v-on:click="showCharacters">Characters</div>
-                </div>
+                <li class="layout-col-xs-10 line-height-3 no-wrap overflow-x-auto vertical-align-bottom">
+                    <div class="border-color-light-black-5 border-left-solid border-width-2px display-inline-block layout-col-xs-5 text-center font-size-xs-md" v-on:click="showAllQuests">All</div>
+                    <div class="border-color-light-black-5 border-left-solid border-width-2px display-inline-block layout-col-xs-6 text-center font-size-xs-md" v-on:click="showHeroicQuests">Heroic</div>
+                    <div class="border-color-light-black-5 border-left-solid border-width-2px display-inline-block layout-col-xs-5 text-center font-size-xs-md" v-on:click="showEpicQuests">Epic</div>
+                    <div class="border-color-light-black-5 border-left-solid border-width-2px display-inline-block layout-col-xs-5 text-center font-size-xs-md" v-on:click="showSagas">Sagas</div>
+                    <div class="border-color-light-black-5 border-left-solid border-right-solid border-width-2px display-inline-block layout-col-xs-8 text-center font-size-xs-md" v-on:click="showCharacters">Characters</div>
+                </li>
 
-                <div class="main-menu-next layout-col-xs-1 line-height-3">
-                    <i class="layout-col-xs-12 background-color-dark-gray-2 font-size-xs-md icon-right-open"></i>
-                </div>
-            </div>
+                <li class="layout-col-xs-1 line-height-3">
+                    <i class="before-margin-left-4px:before layout-col-xs-12 background-color-dark-gray-8 font-size-xs-md icon icon-right-open"></i>
+                </li>
+            </ul>
         </nav>
     </header>
 </template>

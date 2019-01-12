@@ -1,5 +1,5 @@
 <template>
-    <section class="heroic-quests">
+    <section>
         <quest v-for="quest in quests" :key="quest.id" :quest="quest" questType="heroic"></quest>
     </section>
 </template>
@@ -21,7 +21,7 @@
         , computed: {
             quests: function () {
                 try {
-                    return this.sortByLevelAndName( this.$store.getters.quests );
+                    return this.sortByLevelAndName( this.$store.getters.quests ).slice( 0, 25 );
                 } catch ( e ) {
                     return [];
                 }

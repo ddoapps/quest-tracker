@@ -1,5 +1,5 @@
 <template>
-    <section class="all-quests">
+    <section>
         <quest v-for="quest in heroicQuests" :key="quest.id +'heroic'" :quest="quest" questType="heroic"></quest>
         <quest v-for="quest in epicQuests" :key="quest.id +'epic'" :quest="quest" questType="epic"></quest>
     </section>
