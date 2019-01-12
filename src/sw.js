@@ -29,6 +29,8 @@ workbox.clientsClaim();
 
 	workbox.routing.registerRoute(/^http[s]?:\/\/fonts.googleapis.com\/(.*)/, workbox.strategies.staleWhileRevalidate(), 'GET');
 	workbox.routing.registerRoute(/^http[s]?:\/\/fonts.gstatic.com\/(.*)/, workbox.strategies.staleWhileRevalidate(), 'GET');
+	
+	workbox.routing.registerRoute(/\/assets\/styles\/vendor\/fontello\/font\/(.+)[.](.+)[?](.+)$/, workbox.strategies.staleWhileRevalidate(), 'GET');
 }() );
 
 ( function () {
