@@ -7,6 +7,7 @@ export const dataModel = new Vuex.Store( {
 	state: {
 		quests: []
 		, questView: ''
+		, mainScrollTop: 0
 		, theDisclaimerShouldBeShown: !localStorage.getItem( 'hideTheDisclaimer' )
 	}
 	, getters: {
@@ -15,6 +16,9 @@ export const dataModel = new Vuex.Store( {
 		}
 		, questView: function ( state ) {
 			return state.questView;
+		}
+		, mainScrollTop: function ( state ) {
+			return state.mainScrollTop;
 		}
 		, theDisclaimerShouldBeShown: function ( state ) {
 			return state.theDisclaimerShouldBeShown;
@@ -30,6 +34,9 @@ export const dataModel = new Vuex.Store( {
 		}
 		, updateTheQuests: function ( state, quests ) {
 			state.quests = quests;
+		}
+		, updateTheMainScrollTop: function ( state, scrollTop ) {
+			state.mainScrollTop = scrollTop;
 		}
 	}
 } );

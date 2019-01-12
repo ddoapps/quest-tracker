@@ -1,7 +1,7 @@
 <template>
     <section>
-        <quest v-for="quest in heroicQuests" :key="quest.id +'heroic'" :quest="quest" questType="heroic"></quest>
-        <quest v-for="quest in epicQuests" :key="quest.id +'epic'" :quest="quest" questType="epic"></quest>
+        <quest v-for="(quest, index) in heroicQuests" :key="quest.id +'heroic'" :quest="quest" :questIndex="index" questType="heroic"></quest>
+        <quest v-for="(quest, index) in epicQuests" :key="quest.id +'epic'" :quest="quest" :questIndex="index + heroicQuests.length" questType="epic"></quest>
     </section>
 </template>
 
