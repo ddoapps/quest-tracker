@@ -7,30 +7,30 @@
             <span class="display-block margin-left-4px" v-text="name()"></span>
         </div>
         <div :class="questType +'-background-color-dark-red-8 '+ questType +'-background-color-dark-purple-8'"
-             class="border-bottom-left-radius-4px border-top-left-radius-4px font-size-100 layout-col-xs-1 line-height-2-9 text-center vertical-align-top"
+             class="border-bottom-left-radius-4px border-top-left-radius-4px font-size-100 height-44px layout-col-xs-1 line-height-3-5 text-center vertical-align-top"
              v-text="level()"></div>
 
         <div class="layout-col-xs-11">
             <div :class="questType +'-background-color-dark-red-3 '+ questType +'-background-color-dark-purple-3'"
-                 class="font-size-100 font-weight-bold layout-col-xs-3 text-indent-4px">Casual</div>
+                 class="font-size-100 font-weight-bold height-22px layout-col-xs-3 text-indent-4px">Casual</div>
             <div :class="questType +'-background-color-dark-red-0 '+ questType +'-background-color-dark-purple-0'"
-                 class="font-size-100 font-weight-bold layout-col-xs-3 text-indent-4px">Normal</div>
+                 class="font-size-100 font-weight-bold height-22px layout-col-xs-3 text-indent-4px">Normal</div>
             <div :class="questType +'-background-color-dark-red-3 '+ questType +'-background-color-dark-purple-3'"
-                 class="font-size-100 font-weight-bold layout-col-xs-3 text-indent-4px">Hard</div>
+                 class="font-size-100 font-weight-bold height-22px layout-col-xs-3 text-indent-4px">Hard</div>
             <div :class="questType +'-background-color-dark-red-0 '+ questType +'-background-color-dark-purple-0'"
-                 class="font-size-100 font-weight-bold layout-col-xs-3 text-indent-4px">Elite</div>
+                 class="font-size-100 font-weight-bold height-22px layout-col-xs-3 text-indent-4px">Elite</div>
 
             <div :class="questType +'-background-color-dark-red-3 '+ questType +'-background-color-dark-purple-3'"
-                 class="font-size-100 layout-col-xs-3 text-indent-4px"
+                 class="font-size-100 height-22px layout-col-xs-3 text-indent-4px"
                  v-html="casual().xp"></div>
             <div :class="questType +'-background-color-dark-red-0 '+ questType +'-background-color-dark-purple-0'"
-                 class="font-size-100 layout-col-xs-3 text-indent-4px"
+                 class="font-size-100 height-22px layout-col-xs-3 text-indent-4px"
                  v-html="normal().xp"></div>
             <div :class="questType +'-background-color-dark-red-3 '+ questType +'-background-color-dark-purple-3'"
-                 class="font-size-100 layout-col-xs-3 text-indent-4px"
+                 class="font-size-100 height-22px layout-col-xs-3 text-indent-4px"
                  v-html="hard().xp"></div>
             <div :class="questType +'-background-color-dark-red-0 '+ questType +'-background-color-dark-purple-0'"
-                 class="border-bottom-right-radius-4px font-size-100 layout-col-xs-3 text-indent-4px"
+                 class="border-bottom-right-radius-4px font-size-100 height-22px layout-col-xs-3 text-indent-4px"
                  v-html="elite().xp"></div>
         </div>
     </div>
