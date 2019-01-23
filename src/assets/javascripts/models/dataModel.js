@@ -5,20 +5,24 @@ Vue.use( Vuex );
 
 export const dataModel = new Vuex.Store( {
 	state: {
-		quests: []
+		mainScrollTop: 0
+		, quests: []
 		, questView: ''
-		, mainScrollTop: 0
+		, sagas: []
 		, theDisclaimerShouldBeShown: !localStorage.getItem( 'hideTheDisclaimer' )
 	}
 	, getters: {
-		quests: function ( state ) {
+		mainScrollTop: function ( state ) {
+			return state.mainScrollTop;
+		}
+		, quests: function ( state ) {
 			return state.quests;
 		}
 		, questView: function ( state ) {
 			return state.questView;
 		}
-		, mainScrollTop: function ( state ) {
-			return state.mainScrollTop;
+		, sagas: function ( state ) {
+			return state.sagas;
 		}
 		, theDisclaimerShouldBeShown: function ( state ) {
 			return state.theDisclaimerShouldBeShown;
@@ -32,11 +36,14 @@ export const dataModel = new Vuex.Store( {
 			state.theDisclaimerShouldBeShown = false;
 			localStorage.setItem( 'hideTheDisclaimer', 'true' );
 		}
+		, updateTheMainScrollTop: function ( state, scrollTop ) {
+			state.mainScrollTop = scrollTop;
+		}
 		, updateTheQuests: function ( state, quests ) {
 			state.quests = quests;
 		}
-		, updateTheMainScrollTop: function ( state, scrollTop ) {
-			state.mainScrollTop = scrollTop;
+		, updateTheSagas: function ( state, sagas ) {
+			state.sagas = sagas;
 		}
 	}
 } );

@@ -10,8 +10,7 @@
                     <div class="border-color-light-black-5 border-left-solid border-width-2px display-inline-block layout-col-xs-5 text-center font-size-xs-md" v-on:click="showAllQuests">All</div>
                     <div class="border-color-light-black-5 border-left-solid border-width-2px display-inline-block layout-col-xs-6 text-center font-size-xs-md" v-on:click="showHeroicQuests">Heroic</div>
                     <div class="border-color-light-black-5 border-left-solid border-width-2px display-inline-block layout-col-xs-5 text-center font-size-xs-md" v-on:click="showEpicQuests">Epic</div>
-                    <div class="border-color-light-black-5 border-left-solid border-width-2px display-inline-block layout-col-xs-5 text-center font-size-xs-md" v-on:click="showSagas">Sagas</div>
-                    <div class="border-color-light-black-5 border-left-solid border-right-solid border-width-2px display-inline-block layout-col-xs-8 text-center font-size-xs-md" v-on:click="showCharacters">Characters</div>
+                    <div class="border-color-light-black-5 border-left-solid border-right-solid border-width-2px display-inline-block layout-col-xs-5 text-center font-size-xs-md" v-on:click="showSagas">Sagas</div>
                 </li>
 
                 <li class="layout-col-xs-1 line-height-3">
@@ -27,9 +26,6 @@
         methods: {
             showAllQuests: function () {
                 this.$store.commit( 'changeTheQuestView', 'all' );
-            }
-            , showCharacters: function () {
-                this.$store.commit( 'changeTheQuestView', 'characters' );
             }
             , showEpicQuests: function () {
                 this.$store.commit( 'changeTheQuestView', 'epic' );
