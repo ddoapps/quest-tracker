@@ -55,6 +55,7 @@ Vue.use( VueResource );
 					if ( xhr.getResponseHeader( 'last-modified' ) === localStorage.getItem( SERVICE_WORKER_LAST_MODIFIED ) ) {
 						resolve();
 					} else {
+						localStorage.clear();
 						reject();
 					}
 				}, () => reject( USE_REGISTERED_SERVICE_WORKER ) );
@@ -104,7 +105,7 @@ Vue.use( VueResource );
 
 						refreshButton.addEventListener( 'click', function () { window.location.reload(); } );
 
-						showTheElement( refreshButton, true );
+						setTimeout( () => showTheElement( refreshButton, true ), 1500 );
 						localStorage.setItem( SERVICE_WORKER_LAST_MODIFIED, serviceWorkerLastModified );
 					}
 					, () => {

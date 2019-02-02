@@ -1,11 +1,11 @@
 <template>
 	<section class="disclaimer background-color-dark-gray-6 border-solid border-color-dark-gray-12 border-radius-4 border-width-2px display-block font-color-light-gray-25 font-size-0">
 		<div class="padding-4px">
-			<p class="font-size-150 no-margin">
+			<p class="font-size-150 no-margin" tabindex="0">
 				<em class="font-color-yellow-0 font-style-normal">DDO Quest Tracker</em> is a fan site for the MMORPG <a href="http://www.ddo.com/" target="_new" class="font-color-light-blue-0-hover font-weight-bold-hover no-wrap">Dungeons &amp; Dragons Online</a>.
 			</p>
 
-			<p class="font-size-150">
+			<p class="font-size-150" tabindex="0">
 				<em class="font-color-yellow-0 font-style-normal">DDO Quest Tracker</em> claims no copyright with regard to the information provided within, nor any affiliation with any company holding a copyright of, or related to, the information provided within.  The accuracy, and completeness, of the information provided within is not guaranteed, and by interacting with <em class="font-color-yellow-0 font-style-normal">DDO Quest Tracker</em> the user agrees that <em class="font-color-yellow-0 font-style-normal">DDO Quest Tracker</em> is not responsible for any negative outcome that may result from using the information provided.
 			</p>
 
