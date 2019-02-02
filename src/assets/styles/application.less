@@ -32,8 +32,8 @@
 .background-color-dark-gray-8 { background-color: @color-dark-gray-8; }
 .background-color-dark-gray-11 { background-color: @color-dark-gray-11; }
 .background-color-dark-gray-11-hover {
-    .background-color-dark-gray-11();
-    &:hover { background-color: lighten(@color-dark-gray-11, 4%); }
+	.background-color-dark-gray-11();
+	&:hover { background-color: lighten(@color-dark-gray-11, 4%); }
 }
 .background-color-dark-gray-25 { background-color: @color-dark-gray-25; }
 .background-color-light-black-0 { background-color: @color-light-black-0; }
@@ -67,8 +67,8 @@
 .font-color-inherit { color: inherit; }
 .font-color-light-blue-0 { color: @color-light-blue-0; }
 .font-color-light-blue-0-hover {
-    .font-color-light-blue-0();
-    &:hover { color: lighten(@color-light-blue-0, 4%); }
+	.font-color-light-blue-0();
+	&:hover { color: lighten(@color-light-blue-0, 4%); }
 }
 .font-color-light-gray-25 { color: @color-light-gray-25; }
 .font-color-light-red-0 { color: @color-light-red-0; }
@@ -130,41 +130,41 @@
 .z-index-200 { z-index: 200; }
 
 @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 100%; }
+	from { opacity: 0; }
+	to { opacity: 100%; }
 }
 
 // ====================================== LAYOUTS =======================================
 
 @media (max-width: 575px) {
-    .font-size-xs-sm { font-size: @base-font-size; }
-    .font-size-xs-md { font-size: @base-font-size * 2; }
-    .font-size-xs-lg { font-size: @base-font-size * 4; }
-    .font-size-xs-xl { font-size: @base-font-size * 8; }
-    
-    [class*='layout-col-xs-'] { display: inline-block; }
+	.font-size-xs-sm { font-size: @base-font-size; }
+	.font-size-xs-md { font-size: @base-font-size * 2; }
+	.font-size-xs-lg { font-size: @base-font-size * 4; }
+	.font-size-xs-xl { font-size: @base-font-size * 8; }
+	
+	[class*='layout-col-xs-'] { display: inline-block; }
 
-    .layout-col-xs-1  { min-width:  8.33333%; max-width:  8.33333%; }
-    .layout-col-xs-11 { min-width: 91.57777%; max-width: 91.57777%; }
+	.layout-col-xs-1  { min-width:  8.33333%; max-width:  8.33333%; }
+	.layout-col-xs-11 { min-width: 91.57777%; max-width: 91.57777%; }
 
-    .layout-col-xs-2  { min-width: 16.66666%; max-width: 16.66666%; }
-    .layout-col-xs-10 { min-width: 83.13333%; max-width: 83.13333%; }
+	.layout-col-xs-2  { min-width: 16.66666%; max-width: 16.66666%; }
+	.layout-col-xs-10 { min-width: 83.13333%; max-width: 83.13333%; }
 
-    .layout-col-xs-3  { min-width: 25%; max-width: 25%; }
-    .layout-col-xs-9  { min-width: 75%; max-width: 75%; }
+	.layout-col-xs-3  { min-width: 25%; max-width: 25%; }
+	.layout-col-xs-9  { min-width: 75%; max-width: 75%; }
 
-    .layout-col-xs-4  { min-width: 33.33333%; max-width: 33.33333%; }
-    .layout-col-xs-8  { min-width: 66.46666%; max-width: 66.46666%; }
+	.layout-col-xs-4  { min-width: 33.33333%; max-width: 33.33333%; }
+	.layout-col-xs-8  { min-width: 66.46666%; max-width: 66.46666%; }
 
-    .layout-col-xs-5  { min-width: 41.66666%; max-width: 41.66666%; }
-    .layout-col-xs-7  { min-width: 58.13333%; max-width: 58.13333%; }
+	.layout-col-xs-5  { min-width: 41.66666%; max-width: 41.66666%; }
+	.layout-col-xs-7  { min-width: 58.13333%; max-width: 58.13333%; }
 
-    .layout-col-xs-6  { min-width: 50%; max-width: 50%; }
-    .layout-col-xs-12 { min-width: 100%; max-width: 100%; }
+	.layout-col-xs-6  { min-width: 50%; max-width: 50%; }
+	.layout-col-xs-12 { min-width: 100%; max-width: 100%; }
 }
 
 // =================================== MEDIA QUERIES ====================================
 
 @media (max-width: 575px) {
-    .bottom-above-menu { bottom: @base-font-size * 5.5 + 7; }
+	.bottom-above-menu { bottom: @base-font-size * 5.5 + 7; }
 }
