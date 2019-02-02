@@ -9,21 +9,31 @@ Source files for https://ddoapps.github.io/questTracker
 
 # FAQ (or questions I just thought up)
 
-> Why doesn't my Firefox initialize the application?
-1. Verify that you are using a supported version of Firefox
-    1. Hit "Alt" to make the menu visible on the top of the browser
-    1. Click "Help", followed by "About Firefox"
-    1. Your version should be "44" or beyond
-        * If your version is prior to this, you will need to update to use this application
-1. You may need to enable Service Workers (<a href="https://developers.google.com/web/fundamentals/primers/service-workers/" target="_new">What Are Service Workers?</a>)
+> Why doesn't my browser initialize the application?
+
+**Quest Tracker** uses some features provided by newer versions of popular web browsers to work, namely service workers.  These features should be available in the following browsers:
+
+* Chrome 45+
+* Firefox 44+
+* iOS Safari 11.4+
+* Microsoft Edge 17+
+
+An alert has been provided for some simple debugging in this regard.  Navigate to <a href="https://ddoapps.github.io/questTracker#debug" target="_new">https://ddoapps.github.io/questTracker#debug</a> to display the alert.  If any of the options are false, the application will not initialize.
+
+If you are using one of the above browsers within their version range that should offer the functionality needed, and **Service Workers** is **false**, there are a few other things you can check.
+
+1. Make sure you privacy settings allow cookies and storage
+    1. If you have changed your browser setting so that cookies are not remembered, or are removed once the browser closes, your browser may not enable service workers.  You can try changing these restrictions and see if the browser enables service workers.
+1. FIREFOX: You may need to enable Service Workers (<a href="https://developers.google.com/web/fundamentals/primers/service-workers/" target="_new">What Are Service Workers?</a>)
     1. Enter "about:config" in your address bar to bring up the browser configuration controls
     1. Search for "dom.serviceWorkers.enabled"
     1. If the value is "false", double click it to toggle it to "true"
         * This should enable Service Workers for you
+        * You may need to restart the browser
 
 > Why is my browser (version) not supported?
 
-Supported browsers are those that have been verified to work with the application, and the technologies it uses.  If your browser is not listed, it may still work, however there is not an (on going) effort being made to ensure that this is the case.
+Supported Browsers are those that have been verified to work with the application, and the technologies it uses.  If your browser is not listed, it may still work, however there is not an (on going) effort being made to ensure that this is the case.  **Only the browsers listed in the application are Supported Browsers.**
 
 > Why does your application use Service Workers?
 
@@ -37,6 +47,6 @@ The ability to save the data and make it available across devices would require 
 
 > Can I help you create/update this application?
 
-At the moment I'm not completely up to speed on the ability of git to do pull requests and how that whole architecture works.  For now I'll probably say that if you are interested in helping you could always try to do a pull request, but no guarentees that I won't be an idiot and take a while to figure out how to do that.
+At the moment I'm not completely up to speed on the ability of **Git** to do pull requests and how that whole architecture works.  For now I'll probably say that if you are interested in helping you could always try to do a pull request, but no guarentees that I won't be an idiot and take a while to figure out how to do that.
 
 In the short term I'll definitely have a thread on the DDO Forums related to this application that people can make comments about, and eventually I may try to figure out how to make GitHub allow Issues to be created for the applciation.
