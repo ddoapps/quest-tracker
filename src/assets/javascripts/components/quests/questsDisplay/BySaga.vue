@@ -4,10 +4,11 @@
 			<div aria-hidden="true" class="font-size-100 font-weight-bold layout-col-xs-1 text-center vertical-align-bottom"
 				 v-text="sagaType[ 0 ].toUpperCase()"></div>
 
-			<div class="border-top-left-radius-4px border-top-right-radius-4px font-size-130 height-44px layout-col-xs-11" role="text" tabindex="0"
+			<div class="border-top-left-radius-4px border-top-right-radius-4px font-size-130 height-66px layout-col-xs-11" role="text" tabindex="0"
 				 :aria-label="sagaType +' saga, '+ saga.name"
 				 :class="sagaType +'-background-color-dark-red-8 '+ sagaType +'-background-color-dark-purple-8'">
 				<span class="display-block margin-left-4px" v-text="saga.name"></span>
+				<span class="display-block font-size-100 margin-left-4px" v-text="'Adventure Pack: '+ pack()"></span>
 			</div>
 
 			<div class="height-22px layout-col-xs-1 vertical-align-top"></div>
@@ -92,6 +93,9 @@
 			}
 		}
 		, methods: {
+			pack: function () {
+				return ( this.$options.propsData.saga.pack || { name: 'Free to Play' } ).name;
+			}
 		}
 	}
 </script>

@@ -13,13 +13,31 @@
 			Saga
 		}
 		, mounted: function () {
+			this.$store.commit( 'updateThePacks', [] );
 			this.$store.commit( 'updateTheQuests', [] );
 			this.$store.commit( 'updateTheSagas', [] );
 
-			this.$http.get( './api/sagas' ).then( function ( sagaXhr ) {
-				this.$http.get( './api/quests' ).then( function ( questXhr ) {
-					this.$store.commit( 'updateTheQuests', questXhr.body );
-					this.$store.commit( 'updateTheSagas', sagaXhr.body );
+			this.$http.get( './api/packs' ).then( function ( xhr ) {
+				var packs = xhr.body;
+
+				this.$http.get( './api/sagas' ).then( function ( xhr ) {
+					var sagas = xhr.body;
+
+					this.$http.get( './api/quests' ).then( function ( xhr ) {
+						var quests = xhr.body;
+
+						sagas.forEach( function ( saga ) {
+							var pack = packs.find( function ( pack ) {
+								return ( pack.sagas || [] ).indexOf( saga.id ) > -1;
+							} );
+
+							if ( pack ) saga.pack = pack;
+						} );
+
+						this.$store.commit( 'updateThePacks', packs );
+						this.$store.commit( 'updateTheQuests', quests );
+						this.$store.commit( 'updateTheSagas', sagas );
+					} );
 				} );
 			} );
 		}

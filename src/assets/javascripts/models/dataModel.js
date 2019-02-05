@@ -6,6 +6,7 @@ Vue.use( Vuex );
 export const dataModel = new Vuex.Store( {
 	state: {
 		mainScrollTop: 0
+		, packs: []
 		, quests: []
 		, questView: ''
 		, sagas: []
@@ -14,6 +15,9 @@ export const dataModel = new Vuex.Store( {
 	, getters: {
 		mainScrollTop: function ( state ) {
 			return state.mainScrollTop;
+		}
+		, packs: function ( state ) {
+			return state.packs;
 		}
 		, quests: function ( state ) {
 			return state.quests;
@@ -38,6 +42,9 @@ export const dataModel = new Vuex.Store( {
 		}
 		, updateTheMainScrollTop: function ( state, scrollTop ) {
 			state.mainScrollTop = scrollTop;
+		}
+		, updateThePacks: function ( state, packs ) {
+			state.packs = packs;
 		}
 		, updateTheQuests: function ( state, quests ) {
 			state.quests = quests;

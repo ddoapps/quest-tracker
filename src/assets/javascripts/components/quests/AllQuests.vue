@@ -13,10 +13,26 @@
 			Quest
 		}
 		, mounted: function () {
+			this.$store.commit( 'updateThePacks', [] );
 			this.$store.commit( 'updateTheQuests', [] );
 
-			this.$http.get( './api/quests' ).then( function ( xhr ) {
-				this.$store.commit( 'updateTheQuests', xhr.body );
+			this.$http.get( './api/packs' ).then( function ( xhr ) {
+				var packs = xhr.body;
+
+				this.$http.get( './api/quests' ).then( function ( xhr ) {
+					var quests = xhr.body;
+
+					quests.forEach( function ( quest ) {
+						var pack = packs.find( function ( pack ) {
+							return pack.quests.indexOf( quest.id ) > -1;
+						} );
+
+						if ( pack ) quest.pack = pack;
+					} );
+					
+					this.$store.commit( 'updateThePacks', packs );
+					this.$store.commit( 'updateTheQuests', quests );
+				} );
 			} );
 		}
 		, computed: {
