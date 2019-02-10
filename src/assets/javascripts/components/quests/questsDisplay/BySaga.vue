@@ -13,42 +13,42 @@
 
 			<div class="height-22px layout-col-xs-1 vertical-align-top"></div>
 			<div aria-hidden="true" class="layout-col-xs-11">
-				<div class="font-size-100 font-weight-bold height-22px layout-col-xs-3 text-indent-4px"
+				<div class="font-size-100 font-weight-bold height-22px layout-col-xs-3 line-height-22px text-indent-4px"
 					:class="sagaType +'-background-color-dark-red-3 '+ sagaType +'-background-color-dark-purple-3'">Normal</div>
-				<div class="font-size-100 font-weight-bold height-22px layout-col-xs-3 text-indent-4px"
+				<div class="font-size-100 font-weight-bold height-22px layout-col-xs-3 line-height-22px text-indent-4px"
 					:class="sagaType +'-background-color-dark-red-0 '+ sagaType +'-background-color-dark-purple-0'">Hard</div>
-				<div class="font-size-100 font-weight-bold height-22px layout-col-xs-3 text-indent-4px"
+				<div class="font-size-100 font-weight-bold height-22px layout-col-xs-3 line-height-22px text-indent-4px"
 					:class="sagaType +'-background-color-dark-red-3 '+ sagaType +'-background-color-dark-purple-3'">Elite</div>
-				<div class="font-size-100 font-weight-bold height-22px layout-col-xs-3 text-indent-4px"
+				<div class="font-size-100 font-weight-bold height-22px layout-col-xs-3 line-height-22px text-indent-4px"
 					:class="sagaType +'-background-color-dark-red-0 '+ sagaType +'-background-color-dark-purple-0'">True Elite</div>
 			</div>
 
 			<div class="height-22px layout-col-xs-1 vertical-align-top"></div>
 			<div class="layout-col-xs-11">
-				<div class="font-size-100 height-22px layout-col-xs-3 text-indent-4px" role="text" tabindex="0"
+				<div class="font-size-100 height-22px layout-col-xs-3 line-height-22px text-indent-4px" role="text" tabindex="0"
 					:aria-label="'Normal Experience: '+ saga[ sagaType ].normal.xp"
 					:class="sagaType +'-background-color-dark-red-3 '+ sagaType +'-background-color-dark-purple-3'"
 					v-html="saga[ sagaType ].normal.xp"></div>
-				<div class="font-size-100 height-22px layout-col-xs-3 text-indent-4px" role="text" tabindex="0"
+				<div class="font-size-100 height-22px layout-col-xs-3 line-height-22px text-indent-4px" role="text" tabindex="0"
 					:aria-label="'Hard Experience: '+ saga[ sagaType ].hard.xp"
 					:class="sagaType +'-background-color-dark-red-0 '+ sagaType +'-background-color-dark-purple-0'"
 					v-html="saga[ sagaType ].hard.xp"></div>
-				<div class="font-size-100 height-22px layout-col-xs-3 text-indent-4px" role="text" tabindex="0"
+				<div class="font-size-100 height-22px layout-col-xs-3 line-height-22px text-indent-4px" role="text" tabindex="0"
 					:aria-label="'Elite Experience: '+ saga[ sagaType ].elite.xp"
 					:class="sagaType +'-background-color-dark-red-3 '+ sagaType +'-background-color-dark-purple-3'"
 					v-html="saga[ sagaType ].elite.xp"></div>
-				<div class="font-size-100 height-22px layout-col-xs-3 text-indent-4px" role="text" tabindex="0"
+				<div class="font-size-100 height-22px layout-col-xs-3 line-height-22px text-indent-4px" role="text" tabindex="0"
 					:aria-label="'True Elite Experience: '+ saga[ sagaType ].true_elite.xp"
 					:class="sagaType +'-background-color-dark-red-0 '+ sagaType +'-background-color-dark-purple-0'"
 					v-html="saga[ sagaType ].true_elite.xp"></div>
 			</div>
 
 			<template v-for="( quest, index ) in quests">
-				<div aria-hidden="true" class="font-size-100 height-22px layout-col-xs-1 text-center"
+				<div aria-hidden="true" class="font-size-100 height-22px layout-col-xs-1 line-height-22px text-center"
 					:class="questClasses +' '+ (index % 2 ? 'even' : 'odd') +' '+ (!index ? 'border-top-left-radius-4px' : '') +' '+ (index == quests.length - 1 ? 'border-bottom-left-radius-4px' : '')"
 					:key="quest.id + sagaType +'level'"
 					v-text="quest.level"></div>
-				<div class="font-size-100 height-22px layout-col-xs-11 text-indent-4px" role="text" tabindex="0"
+				<div class="font-size-100 height-22px layout-col-xs-11 line-height-22px text-indent-4px" role="text" tabindex="0"
 					:aria-label="quest.name +', saga quest '+ ( index + 1 ) +' of '+ quests.length +'; level '+ quest.level"
 					:class="questClasses +' '+ (index % 2 ? 'even' : 'odd') +' '+ (index == quests.length - 1 ? 'border-bottom-right-radius-4px' : '')"
 					:key="quest.id + sagaType +'name'"

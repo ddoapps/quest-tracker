@@ -16,34 +16,34 @@
 				v-text="level()"></div>
 
 			<div class="layout-col-xs-11">
-				<div aria-hidden="true" class="font-size-100 font-weight-bold height-22px layout-col-xs-3 text-indent-4px"
+				<div aria-hidden="true" class="font-size-100 font-weight-bold height-22px layout-col-xs-3 line-height-22px text-indent-4px"
 					:class="questType +'-background-color-dark-red-3 '+ questType +'-background-color-dark-purple-3'">Casual</div>
-				<div aria-hidden="true" class="font-size-100 font-weight-bold height-22px layout-col-xs-3 text-indent-4px"
+				<div aria-hidden="true" class="font-size-100 font-weight-bold height-22px layout-col-xs-3 line-height-22px text-indent-4px"
 					:class="questType +'-background-color-dark-red-0 '+ questType +'-background-color-dark-purple-0'">Normal</div>
-				<div aria-hidden="true" class="font-size-100 font-weight-bold height-22px layout-col-xs-3 text-indent-4px"
+				<div aria-hidden="true" class="font-size-100 font-weight-bold height-22px layout-col-xs-3 line-height-22px text-indent-4px"
 					:class="questType +'-background-color-dark-red-3 '+ questType +'-background-color-dark-purple-3'">Hard</div>
-				<div aria-hidden="true" class="font-size-100 font-weight-bold height-22px layout-col-xs-3 text-indent-4px"
+				<div aria-hidden="true" class="font-size-100 font-weight-bold height-22px layout-col-xs-3 line-height-22px text-indent-4px"
 					:class="questType +'-background-color-dark-red-0 '+ questType +'-background-color-dark-purple-0'">Elite</div>
 
-				<div class="font-size-100 height-22px layout-col-xs-3 text-indent-4px" role="text"
+				<div class="font-size-100 height-22px layout-col-xs-3 line-height-22px text-indent-4px" role="text"
 					:aria-hidden="casual().xp === '&nbsp;'"
 					:aria-label="'Casual Experience: '+ casual().xp"
 					:class="questType +'-background-color-dark-red-3 '+ questType +'-background-color-dark-purple-3'"
 					:tabindex="casual().xp != '&nbsp;' ? 0 : -1"
 					v-html="casual().xp"></div>
-				<div class="font-size-100 height-22px layout-col-xs-3 text-indent-4px" role="text"
+				<div class="font-size-100 height-22px layout-col-xs-3 line-height-22px text-indent-4px" role="text"
 					:aria-hidden="normal().xp === '&nbsp;'"
 					:aria-label="'Normal Experience: '+ normal().xp"
 					:class="questType +'-background-color-dark-red-0 '+ questType +'-background-color-dark-purple-0'"
 					:tabindex="normal().xp != '&nbsp;' ? 0 : -1"
 					v-html="normal().xp"></div>
-				<div class="font-size-100 height-22px layout-col-xs-3 text-indent-4px" role="text"
+				<div class="font-size-100 height-22px layout-col-xs-3 line-height-22px text-indent-4px" role="text"
 					:aria-hidden="hard().xp === '&nbsp;'"
 					:aria-label="'Hard Experience: '+ hard().xp"
 					:class="questType +'-background-color-dark-red-3 '+ questType +'-background-color-dark-purple-3'"
 					:tabindex="hard().xp != '&nbsp;' ? 0 : -1"
 					v-html="hard().xp"></div>
-				<div class="border-bottom-right-radius-4px font-size-100 height-22px layout-col-xs-3 text-indent-4px" role="text"
+				<div class="border-bottom-right-radius-4px font-size-100 height-22px layout-col-xs-3 line-height-22px text-indent-4px" role="text"
 					:aria-hidden="elite().xp === '&nbsp;'"
 					:aria-label="'Elite Experience: '+ elite().xp"
 					:class="questType +'-background-color-dark-red-0 '+ questType +'-background-color-dark-purple-0'"
