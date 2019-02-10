@@ -5,9 +5,9 @@
 				v-text="questType[ 0 ].toUpperCase()"></div>
 
 			<div class="border-top-left-radius-4px border-top-right-radius-4px font-size-130 height-66px layout-col-xs-11" role="text" tabindex="0"
-				:aria-label="questType+ ' level '+ level() +' quest, '+ name()"
+				:aria-label="questType+ ' level '+ level() +' quest, '+ quest.name"
 				:class="questType +'-background-color-dark-red-8 '+ questType +'-background-color-dark-purple-8'">
-				<span class="display-block margin-left-4px" v-text="name()"></span>
+				<span class="display-block margin-left-4px" v-text="quest.name"></span>
 				<span class="display-block font-size-100 margin-left-4px" v-text="'Adventure Pack: '+ pack()"></span>
 			</div>
 
@@ -84,9 +84,6 @@
 				let questByType = this.questByType();
 
 				return ( questByType.normal || questByType.casual ).level;
-			}
-			, name: function () {
-				return this.$options.propsData.quest.name;
 			}
 			, normal: function () {
 				return this.questByType().normal || { xp: '&nbsp;' };

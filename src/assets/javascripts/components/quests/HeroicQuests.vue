@@ -11,33 +11,12 @@
 		components: {
 			Quest
 		}
-		, mounted: function () {
-			this.$store.commit( 'updateThePacks', [] );
-			this.$store.commit( 'updateTheQuests', [] );
-
-			this.$http.get( './api/packs' ).then( function ( xhr ) {
-				var packs = xhr.body;
-
-				this.$http.get( './api/quests/type/heroic' ).then( function ( xhr ) {
-					var quests = xhr.body;
-
-					quests.forEach( function ( quest ) {
-						var pack = packs.find( function ( pack ) {
-							return pack.quests.indexOf( quest.id ) > -1;
-						} );
-
-						if ( pack ) quest.pack = pack;
-					} );
-					
-					this.$store.commit( 'updateThePacks', packs );
-					this.$store.commit( 'updateTheQuests', quests );
-				} );
-			} );
-		}
 		, computed: {
 			quests: function () {
 				try {
-					return this.sortByLevelAndName( this.$store.getters.quests );
+					return this.sortByLevelAndName( this.$store.getters.quests.filter( function ( quest ) {
+						return quest.heroic;
+					} ) );
 				} catch ( e ) {
 					return [];
 				}
