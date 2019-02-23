@@ -16,7 +16,10 @@
 		}
 		, computed: {
 			showTheHeader: function () {
-				return !this.$store.getters.theDisclaimerShouldBeShown;
+				return (
+					!this.$store.getters.theDisclaimerShouldBeShown
+					&& !this.$store.getters.theQuestListingsOmniSearchShouldBeShown
+				);
 			}
 		}
 		, mounted: function () {
