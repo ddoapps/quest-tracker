@@ -27,6 +27,22 @@ Vue.use( VueResource );
 		return this;
 	};
 
+	Array.prototype.contains = function ( value ) {
+		return ( this && this.length && this.indexOf( value ) > -1 );
+	};
+
+	Array.prototype.containsAny = function ( values ) {
+		var result = false;
+
+		if ( this && this.length && values && values.length ) {
+			for ( var i = 0; !result && i < values.length; i++ ) {
+				result = this.contains( values[ i ] );
+			}
+		}
+
+		return result;
+	};
+
 	// ============================================================================================
 
 	function ajax ( type, url ) {

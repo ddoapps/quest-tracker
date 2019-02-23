@@ -6,39 +6,14 @@
 </template>
 
 <script>
+	import EpicQuestsMixin from '../../mixins/EpicQuestsMixin.js';
+	import HeroicQuestsMixin from '../../mixins/HeroicQuestsMixin.js';
 	import Quest from './questsDisplay/ByLevel.vue';
 
 	export default {
-		components: {
+		mixins: [ EpicQuestsMixin, HeroicQuestsMixin ]
+		, components: {
 			Quest
-		}
-		, computed: {
-			epicQuests: function () {
-				return this.sortByLevelAndName(
-					this.$store.getters.quests.filter( function ( quest ) {
-						return quest.epic;
-					} )
-					, 'epic'
-				);
-			}
-			, heroicQuests: function () {
-				return this.sortByLevelAndName(
-					this.$store.getters.quests.filter( function ( quest ) {
-						return quest.heroic;
-					} )
-					, 'heroic'
-				);
-			}
-		}
-		, methods: {
-			sortByLevelAndName: function ( quests, questType ) {
-				return quests.sort( function ( a, b ) {
-					var aLevel = ( a[ questType ].normal || a[ questType ].casual ).level;
-					var bLevel = ( b[ questType ].normal || b[ questType ].casual ).level;
-
-					return aLevel - bLevel || a.name.localeCompare( b.name );
-				} );
-			}
 		}
 	}
 </script>

@@ -1,5 +1,5 @@
 <template>
-	<section class="disclaimer background-color-dark-gray-6 border-solid border-color-dark-gray-12 border-radius-4 border-width-2px display-block font-color-light-gray-25 font-size-0">
+	<section class="disclaimer background-color-dark-gray-6 border-solid border-color-dark-gray-12 border-radius-4px border-width-2px display-block font-color-light-gray-25 font-size-0">
 		<div class="padding-4px">
 			<p class="font-size-150 no-margin" tabindex="0">
 				<em class="font-color-yellow-0 font-style-normal">DDO Quest Tracker</em> is a fan site for the MMORPG <a href="http://www.ddo.com/" target="_new" class="font-color-light-blue-0-hover font-weight-bold-hover no-wrap">Dungeons &amp; Dragons Online</a>.
@@ -10,7 +10,7 @@
 			</p>
 
 			<div class="text-center">
-				<button class="background-color-dark-gray-11-hover border-color-light-black-0 border-radius-4 border-solid border-width-1px font-color-inherit font-size-200 line-height-3 min-width-240px" aria-label="Continue.  Click this button to continue to the application." @click="closeTheDisclaimer">Continue</button>
+				<button class="background-color-dark-gray-11-hover border-color-light-black-0 border-radius-4px border-solid border-width-1px font-color-inherit font-size-200 line-height-3 min-width-240px" aria-label="Continue.  Click this button to continue to the application." @click="closeTheDisclaimer">Continue</button>
 			</div>
 		</div>
 	</section>
