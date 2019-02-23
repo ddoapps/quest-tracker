@@ -1,14 +1,15 @@
 <template>
-	<div class="height-110px margin-bottom-4px-last-child margin-top-4px">
+	<div class="height-132px margin-bottom-4px-last-child margin-top-4px">
 		<div class="font-color-white-0 font-size-0 layout-col-xs-12" v-if="questIsAlmostInView">
 			<div aria-hidden="true" class="font-size-100 font-weight-bold layout-col-xs-1 text-center vertical-align-bottom"
 				v-text="questType[ 0 ].toUpperCase()"></div>
 
-			<div class="border-top-left-radius-4px border-top-right-radius-4px font-size-130 height-66px layout-col-xs-11" role="text" tabindex="0"
+			<div class="border-top-left-radius-4px border-top-right-radius-4px font-size-130 height-88px layout-col-xs-11" role="text" tabindex="0"
 				:aria-label="questType+ ' level '+ level() +' quest, '+ quest.name"
 				:class="questType +'-background-color-dark-red-8 '+ questType +'-background-color-dark-purple-8'">
 				<span class="display-block margin-left-4px" v-text="quest.name"></span>
 				<span class="display-block font-size-100 margin-left-4px" v-text="'Adventure Pack: '+ pack()"></span>
+				<span class="display-block font-size-100 margin-left-4px" v-text="'Duration: '+ quest.duration"></span>
 			</div>
 
 			<div aria-hidden="true" class="border-bottom-left-radius-4px border-top-left-radius-4px font-size-100 height-44px layout-col-xs-1 line-height-3-5 text-center vertical-align-top"
@@ -59,7 +60,7 @@
 		props: [ 'quest', 'questIndex', 'questType' ]
 		, computed: {
 			questIsAlmostInView: function () {
-				let questDisplayHeight = 110 + 4;
+				let questDisplayHeight = 132 + 4;
 				let scrollDistance = this.$store.getters.mainScrollTop;
 				let offsetTop = this.questIndex * questDisplayHeight;
 				let adjustedOffsetTop = offsetTop - scrollDistance;
