@@ -8,6 +8,7 @@ export default {
 					return (
 						quest.name.toLowerCase().indexOf( searchValue ) > -1
 						|| thiz.getQuestMinimumLevel( quest, questType ) == searchValue
+						|| thiz.questBelongsToThePack( quest, searchValue )
 					);
 				} );
 			}
@@ -21,6 +22,9 @@ export default {
 		}
 		, getQuestMinimumLevel: function ( quest, questType ) {
 			return ( quest[ questType ].normal || quest[ questType ].casual ).level;
+		}
+		, questBelongsToThePack: function ( quest, searchValue ) {
+			return ( ( quest.pack || {} ).name || 'free to play' ).toLowerCase().indexOf( searchValue ) > -1;
 		}
 		, sortByLevelAndName: function ( quests, questType ) {
 			var thiz = this;
