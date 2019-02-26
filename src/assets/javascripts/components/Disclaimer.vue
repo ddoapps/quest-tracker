@@ -19,7 +19,7 @@
 <script>
 	export default {
 		methods: {
-			closeTheDisclaimer: function () {
+			closeTheDisclaimer () {
 				this.$store.commit( 'hideTheDisclaimer' );
 			}
 		}

@@ -1,10 +1,10 @@
 <template>
 	<section>
-		<listings-omni-search v-if="questView() != ''"></listings-omni-search>
-		<all-quests v-if="questView() === 'all'"></all-quests>
-		<heroic-quests v-if="questView() === 'heroic'"></heroic-quests>
-		<epic-quests v-if="questView() === 'epic'"></epic-quests>
-		<all-sagas v-if="questView() === 'sagas'"></all-sagas>
+		<listings-omni-search v-if="questView != ''"></listings-omni-search>
+		<all-quests v-if="questView === 'all'"></all-quests>
+		<heroic-quests v-if="questView === 'heroic'"></heroic-quests>
+		<epic-quests v-if="questView === 'epic'"></epic-quests>
+		<all-sagas v-if="questView === 'sagas'"></all-sagas>
 	</section>
 </template>
 
@@ -23,8 +23,8 @@
 			, HeroicQuests
 			, ListingsOmniSearch
 		}
-		, methods: {
-			questView: function () {
+		, computed: {
+			questView () {
 				return this.$store.getters.questView;
 			}
 		}

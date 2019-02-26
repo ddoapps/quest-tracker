@@ -1,7 +1,7 @@
 <template>
-	<main	class="center display-inline-block margin-left-1vw max-width-98vw min-width-98vw overflow-y-auto position-absolute position-top z-index-100"
-			:class="ifTheMainMenuIsShown() ? 'bottom-above-menu' : 'position-bottom'"
-		@scroll="updateTheMainScrollTop($event)">
+	<main class="center display-inline-block margin-left-1vw max-width-98vw min-width-98vw overflow-y-auto position-absolute position-top z-index-100"
+		:class="ifTheMainMenuIsShown ? 'bottom-above-menu' : 'position-bottom'"
+		@scroll="updateTheMainScrollTop( $event )">
 		<disclaimer v-if="theDisclaimerShouldBeShown"></disclaimer>
 		<quests v-if="!theDisclaimerShouldBeShown"></quests>
 	</main>
@@ -17,15 +17,15 @@
 			, Quests
 		}
 		, computed: {
-			theDisclaimerShouldBeShown: function () {
+			ifTheMainMenuIsShown () {
+				return !this.$store.getters.theQuestListingsOmniSearchShouldBeShown
+			}
+			, theDisclaimerShouldBeShown () {
 				return this.$store.getters.theDisclaimerShouldBeShown;
 			}
 		}
 		, methods: {
-			ifTheMainMenuIsShown: function () {
-				return !this.$store.getters.theQuestListingsOmniSearchShouldBeShown
-			}
-			, updateTheMainScrollTop: function ( event ) {
+			updateTheMainScrollTop ( event ) {
 				this.$store.commit( 'updateTheMainScrollTop', event.target.scrollTop );
 			}
 		}

@@ -1,6 +1,6 @@
 <template>
-	<section class="application display-none z-index-0" aria-hidden="true">
-		<application-header v-if="showTheHeader"></application-header>
+	<section aria-hidden="true" class="application display-none z-index-0">
+		<application-header v-if="theHeaderShouldBeShown"></application-header>
 		<application-content></application-content>
 	</section>
 </template>
@@ -15,24 +15,20 @@
 			, ApplicationContent
 		}
 		, computed: {
-			showTheHeader: function () {
+			theHeaderShouldBeShown () {
 				return (
 					!this.$store.getters.theDisclaimerShouldBeShown
 					&& !this.$store.getters.theQuestListingsOmniSearchShouldBeShown
 				);
 			}
 		}
-		, mounted: function () {
+		, mounted () {
 			if ( !this.$store.getters.quests.length ) {
-				this.$http.get( './api/quests' ).then( function ( xhr ) {
-					this.$store.commit( 'updateTheQuests', xhr.body );
-				} );
+				this.$http.get( './api/quests' ).then( xhr => this.$store.commit( 'updateTheQuests', xhr.body ) );
 			}
 
 			if ( !this.$store.getters.sagas.length ) {
-				this.$http.get( './api/sagas' ).then( function ( xhr ) {
-					this.$store.commit( 'updateTheSagas', xhr.body );
-				} );
+				this.$http.get( './api/sagas' ).then( xhr => this.$store.commit( 'updateTheSagas', xhr.body ) );
 			}
 		}
 	}

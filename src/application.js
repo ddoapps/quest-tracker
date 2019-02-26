@@ -1,3 +1,5 @@
+'use strict';
+
 require( './assets/styles/application.less' );
 
 import Vue from 'vue';
@@ -7,11 +9,11 @@ import { dataModel } from './assets/javascripts/models/dataModel.js';
 
 Vue.use( VueResource );
 
-( function (window, document, undefined) {
+( function ( window, document, undefined ) {
 	const USE_REGISTERED_SERVICE_WORKER = 'use-existing-service-worker';
 	const SERVICE_WORKER_LAST_MODIFIED = 'service-worker-last-modified';
 
-	window.addEventListener( 'load', event => {
+	window.addEventListener( 'load', () => {
 		if ( theBrowserIsSupported() ) {
 			checkIfTheServiceWorkerIsRegistered().then( initializeTheApplication, registerTheServiceWorker );
 		} else {
@@ -32,10 +34,10 @@ Vue.use( VueResource );
 	};
 
 	Array.prototype.containsAny = function ( values ) {
-		var result = false;
+		let result = false;
 
 		if ( this && this.length && values && values.length ) {
-			for ( var i = 0; !result && i < values.length; i++ ) {
+			for ( let i = 0; !result && i < values.length; i++ ) {
 				result = this.contains( values[ i ] );
 			}
 		}
@@ -86,7 +88,7 @@ Vue.use( VueResource );
 		showTheElement( document.querySelector( '.firstRender .checkForExistingApplication' ), true );
 
 		return new Promise( ( resolve, reject ) => {
-			const theServiceWorkIsNotRegistered = ( status ) => {
+			const theServiceWorkIsNotRegistered = status => {
 				if ( status == USE_REGISTERED_SERVICE_WORKER ) {
 					resolve();
 				} else {
@@ -117,7 +119,7 @@ Vue.use( VueResource );
 					() => {
 						showTheElement( document.querySelector( '.firstRender .applicationRegistrationSuccess' ), true );
 
-						var refreshButton = document.querySelector( '.firstRender .refreshButton' );
+						let refreshButton = document.querySelector( '.firstRender .refreshButton' );
 
 						refreshButton.addEventListener( 'click', function () { window.location.reload(); } );
 
@@ -153,11 +155,7 @@ Vue.use( VueResource );
 		let promisesEnabled = ( 'Promise' in window );
 
 		if ( window.location.hash === '#debug' ) {
-			alert(
-				'Service Workers: '+ serviceWorkersEnabled +'\n'
-				+'Local Storage: '+ localStorageEnabled +'\n'
-				+'Promises: '+ promisesEnabled
-			);
+			alert( `Service Workers: ${serviceWorkersEnabled}\nLocal Storage: ${localStorageEnabled}\nPromises: ${promisesEnabled}` );
 		}
 
 		return ( serviceWorkersEnabled && localStorageEnabled && promisesEnabled );
@@ -179,7 +177,7 @@ Vue.use( VueResource );
 
 				let startButton = document.querySelector( '.firstRender .startButton' );
 
-				startButton.addEventListener( 'click', function () {
+				startButton.addEventListener( 'click', () => {
 					let firstRender = document.querySelector( '.firstRender' );
 
 					firstRender.parentNode.removeChild( firstRender );

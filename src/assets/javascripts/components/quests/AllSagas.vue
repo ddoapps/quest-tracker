@@ -1,7 +1,7 @@
 <template>
 	<section>
-		<saga v-for="(saga, index) in heroicSagas" :key="saga.id +'heroic'" :saga="saga" :sagaIndex="index" sagaType="heroic"></saga>
-		<saga v-for="(saga, index) in epicSagas" :key="saga.id +'epic'" :saga="saga" :sagaIndex="index" sagaType="epic"></saga>
+		<saga v-for="(saga, index) in filteredHeroicSagas" :key="saga.id +'heroic'" :saga="saga" :sagaIndex="index" sagaType="heroic"></saga>
+		<saga v-for="(saga, index) in filteredEpicSagas" :key="saga.id +'epic'" :saga="saga" :sagaIndex="index" sagaType="epic"></saga>
 	</section>
 </template>
 
@@ -15,52 +15,34 @@
 			Saga
 		}
 		, computed: {
-			epicSagas: function () {
-				var sagas = this.sortByName(
-					this.$store.getters.sagas.filter( function ( saga ) {
-						return saga.epic;
-					} )
-					, 'epic'
-				);
-
-				return this.filterSagasBySearch( sagas, 'epic', this.$store.getters.questListingsSearchValue.toLowerCase() );
+			epicSagas () {
+				return this.sortByName( this.$store.getters.sagas.filter( saga => saga.epic ), 'epic' );
 			}
-			, heroicSagas: function () {
-				var sagas = this.sortByName(
-					this.$store.getters.sagas.filter( function ( saga ) {
-						return !!saga.heroic;
-					} )
-					, 'heroic'
-				);
-
-				return this.filterSagasBySearch( sagas, 'heroic', this.$store.getters.questListingsSearchValue.toLowerCase() );
+			, filteredEpicSagas () {
+				return this.filterSagasBySearch( this.epicSagas, 'epic', this.$store.getters.questListingsSearchValue.toLowerCase() );
+			}
+			, filteredHeroicSagas: function () {
+				return this.filterSagasBySearch( this.heroicSagas, 'heroic', this.$store.getters.questListingsSearchValue.toLowerCase() );
+			}
+			, heroicSagas () {
+				return this.sortByName( this.$store.getters.sagas.filter( saga => saga.heroic ), 'heroic' );
 			}
 		}
 		, methods: {
-			filterSagasBySearch: function ( sagas, sagaType, searchValue ) {
+			filterSagasBySearch ( sagas, sagaType, searchValue ) {
 				if ( searchValue ) {
-					var quests = this.filterQuestsBySearch(
-						this.filterQuestsByType( this.$store.getters.quests, sagaType )
-						, sagaType, searchValue
-					);
-					var questIds = quests.map( function ( quest ) {
-						return quest.id;
-					} );
+					let quests = this.filterQuestsBySearch( this.filterQuestsByType( this.$store.getters.quests, sagaType ), sagaType, searchValue );
+					let questIds = quests.map( quest => quest.id );
 
-					sagas = sagas.filter( function ( saga ) {
-						return (
-							saga.name.toLowerCase().indexOf( searchValue ) > -1
-							|| saga[ sagaType ].quests.containsAny( questIds )
-						);
+					sagas = sagas.filter( saga => {
+						return ( saga.name.toLowerCase().indexOf( searchValue ) > -1 || saga[ sagaType ].quests.containsAny( questIds ) );
 					} );
 				}
 
 				return sagas;
 			}
-			, sortByName: function ( sagas, sagaType ) {
-				return sagas.sort( function ( a, b ) {
-					return a.name.localeCompare( b.name );
-				} );
+			, sortByName ( sagas, sagaType ) {
+				return sagas.sort( ( a, b ) => a.name.localeCompare( b.name ) );
 			}
 		}
 	}
