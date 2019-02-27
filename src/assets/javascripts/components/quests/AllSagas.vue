@@ -6,44 +6,13 @@
 </template>
 
 <script>
-	import QuestsMixin from '../../mixins/QuestsMixin.js';
 	import Saga from './questsDisplay/BySaga.vue';
+	import SagasMixin from '../../mixins/SagasMixin.js';
 
 	export default {
-		mixins: [ QuestsMixin ]
+		mixins: [ SagasMixin ]
 		, components: {
 			Saga
-		}
-		, computed: {
-			epicSagas () {
-				return this.sortByName( this.$store.getters.sagas.filter( saga => saga.epic ), 'epic' );
-			}
-			, filteredEpicSagas () {
-				return this.filterSagasBySearch( this.epicSagas, 'epic', this.$store.getters.questListingsSearchValue.toLowerCase() );
-			}
-			, filteredHeroicSagas: function () {
-				return this.filterSagasBySearch( this.heroicSagas, 'heroic', this.$store.getters.questListingsSearchValue.toLowerCase() );
-			}
-			, heroicSagas () {
-				return this.sortByName( this.$store.getters.sagas.filter( saga => saga.heroic ), 'heroic' );
-			}
-		}
-		, methods: {
-			filterSagasBySearch ( sagas, sagaType, searchValue ) {
-				if ( searchValue ) {
-					let quests = this.filterQuestsBySearch( this.filterQuestsByType( this.$store.getters.quests, sagaType ), sagaType, searchValue );
-					let questIds = quests.map( quest => quest.id );
-
-					sagas = sagas.filter( saga => {
-						return ( saga.name.toLowerCase().indexOf( searchValue ) > -1 || saga[ sagaType ].quests.containsAny( questIds ) );
-					} );
-				}
-
-				return sagas;
-			}
-			, sortByName ( sagas, sagaType ) {
-				return sagas.sort( ( a, b ) => a.name.localeCompare( b.name ) );
-			}
 		}
 	}
 </script>

@@ -1,5 +1,25 @@
+import ListingsOmniSearchMixin from './ListingsOmniSearchMixin.js';
+
 export default {
-	methods: {
+	mixins: [ ListingsOmniSearchMixin ]
+	, computed: {
+		epicQuests () {
+			return this.sortByLevelAndName( this.quests.filter( quest => quest.epic ), 'epic' );
+		}
+		, filteredEpicQuests () {
+			return this.filterQuestsBySearch( this.epicQuests, 'epic', this.listingsSearchValue );
+		}
+		, filteredHeroicQuests () {
+			return this.filterQuestsBySearch( this.heroicQuests, 'heroic', this.listingsSearchValue );
+		}
+		, heroicQuests () {
+			return this.sortByLevelAndName( this.quests.filter( quest => quest.heroic ), 'heroic' );
+		}
+		, quests () {
+			return this.$store.getters.quests;
+		}
+	}
+	, methods: {
 		filterQuestsBySearch ( quests, questType, searchValue ) {
 			if ( searchValue ) {
 				let self = this;
@@ -14,9 +34,6 @@ export default {
 			}
 
 			return quests;
-		}
-		, filterQuestsByType ( quests, questType ) {
-			return quests.filter( quest => quest[ questType ] );
 		}
 		, getQuestMinimumLevel ( quest, questType ) {
 			return ( quest[ questType ].normal || quest[ questType ].casual ).level;

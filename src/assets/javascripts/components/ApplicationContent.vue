@@ -1,7 +1,5 @@
 <template>
-	<main class="center display-inline-block margin-left-1vw max-width-98vw min-width-98vw overflow-y-auto position-absolute position-top z-index-100"
-		:class="ifTheMainMenuIsShown ? 'bottom-above-menu' : 'position-bottom'"
-		@scroll="updateTheMainScrollTop( $event )">
+	<main :class="mainClasses" @scroll="updateTheMainScrollTop( $event )">
 		<disclaimer v-if="theDisclaimerShouldBeShown"></disclaimer>
 		<quests v-if="!theDisclaimerShouldBeShown"></quests>
 	</main>
@@ -17,11 +15,32 @@
 			, Quests
 		}
 		, computed: {
-			ifTheMainMenuIsShown () {
-				return !this.$store.getters.theQuestListingsOmniSearchShouldBeShown
+			mainClasses () {
+				let classes = [
+					'center'
+					, 'display-inline-block'
+					, 'margin-left-1vw'
+					, 'max-width-98vw'
+					, 'min-width-98vw'
+					, 'overflow-y-auto'
+					, 'position-absolute'
+					, 'position-top'
+					, 'z-index-100'
+				];
+
+				if ( this.theMainMenuIsShown ) {
+					classes.push( 'bottom-above-menu' );
+				} else {
+					classes.push( 'position-bottom' );
+				}
+
+				return classes.join( ' ' );
 			}
 			, theDisclaimerShouldBeShown () {
 				return this.$store.getters.theDisclaimerShouldBeShown;
+			}
+			, theMainMenuIsShown () {
+				return !this.$store.getters.theQuestListingsOmniSearchShouldBeShown
 			}
 		}
 		, methods: {
