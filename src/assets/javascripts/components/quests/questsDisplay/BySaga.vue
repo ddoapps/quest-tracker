@@ -26,20 +26,20 @@
 				<div role="text" tabindex="0" :aria-label="trueEliteTextAriaLabel" :class="trueEliteTextClasses" v-html="trueEliteText"></div>
 			</div>
 
-			<template v-for="( quest, index ) in sagaQuests">
-				<div aria-hidden="true" :class="sagaQuestLevelClasses( index, sagaQuests.length )" :key="quest.id + sagaType +'level'" v-text="quest.level"></div>
-				<div role="text" tabindex="0"
-					:aria-label="sagaQuestTextAriaLabel( index, sagaQuests.length, quest )"
-					:class="sagaQuestTextClasses( index, sagaQuests )"
-					:key="quest.id + sagaType +'name'" v-text="quest.name"></div>
-			</template>
+			<saga-quest v-for="( quest, index ) in sagaQuests" :key="quest.id + sagaType"
+				:quest="quest" :index="index" :questCount="sagaQuests.length" :sagaType="sagaType"></saga-quest>
 		</div>
 	</div>
 </template>
 
 <script>
+	import SagaQuest from './SagaQuest.vue';
+
 	export default {
 		props: [ 'saga', 'sagaIndex', 'sagaType', 'quests' ]
+		, components: {
+			SagaQuest
+		}
 		, computed: {
 			adventurePackText () {
 				return `Adventure Pack: ${this.pack}`;
@@ -212,44 +212,6 @@
 		, methods: {
 			getQuestMinimumLevel ( quest, questType ) {
 				return ( quest[ questType ].normal || quest[ questType ].casual ).level;
-			}
-			, sagaQuestLevelClasses ( index, questCount ) {
-				let classes = [
-					'font-size-100'
-					, 'height-22px'
-					, 'layout-col-xs-1'
-					, 'line-height-22px'
-					, 'text-center'
-					, `${this.sagaType}-background-color-dark-red-8`
-					, `${this.sagaType}-background-color-dark-purple-8`
-				];
-
-				classes.push( index % 2 ? 'even' : 'odd' );
-
-				if ( !index ) classes.push( 'border-top-left-radius-4px' );
-				else if ( index + 1 === questCount ) classes.push( 'border-bottom-left-radius-4px' );
-
-				return classes.join( ' ' );
-			}
-			, sagaQuestTextAriaLabel ( index, questCount, quest ) {
-				return `${quest.name}, saga quest ${ index + 1 } of ${questCount}; level ${quest.level}`;
-			}
-			, sagaQuestTextClasses ( index, questCount ) {
-				let classes = [
-					'font-size-100'
-					, 'height-22px'
-					, 'layout-col-xs-11'
-					, 'line-height-22px'
-					, 'text-indent-4px'
-					, `${this.sagaType}-background-color-dark-red-8`
-					, `${this.sagaType}-background-color-dark-purple-8`
-				];
-
-				classes.push( index % 2 ? 'even' : 'odd' );
-
-				if ( index + 1 === questCount ) classes.push( 'border-bottom-right-radius-4px' );
-
-				return classes.join( ' ' );
 			}
 		}
 	}
