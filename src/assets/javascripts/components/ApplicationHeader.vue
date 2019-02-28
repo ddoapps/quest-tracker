@@ -51,24 +51,32 @@
 			}
 		}
 		, methods: {
-			showAllQuests () {
+			scrollToTheTop () {
+				document.getElementsByTagName( 'main' )[ 0 ].scrollTo( 0, 0 );
+			}
+			, showAllQuests () {
 				this.$store.commit( 'changeTheQuestView', 'all' );
 				this.$store.commit( 'updateTheQuestListingsSearchValue', '' );
+				this.scrollToTheTop();
 			}
 			, showEpicQuests () {
 				this.$store.commit( 'changeTheQuestView', 'epic' );
 				this.$store.commit( 'updateTheQuestListingsSearchValue', '' );
+				this.scrollToTheTop();
 			}
 			, showHeroicQuests () {
 				this.$store.commit( 'changeTheQuestView', 'heroic' );
 				this.$store.commit( 'updateTheQuestListingsSearchValue', '' );
+				this.scrollToTheTop();
 			}
 			, showSagas () {
 				this.$store.commit( 'changeTheQuestView', 'sagas' );
 				this.$store.commit( 'updateTheQuestListingsSearchValue', '' );
+				this.scrollToTheTop();
 			}
 			, showTheQuestsOmniSearch () {
 				this.$store.commit( 'showTheQuestListingsOmniSearch', true );
+				this.scrollToTheTop();
 			}
 		}
 	}

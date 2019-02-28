@@ -38,11 +38,8 @@
 </template>
 
 <script>
-	import QuestsMixin from '../../../mixins/QuestsMixin.js';
-
 	export default {
-		mixins: [ QuestsMixin ]
-		, props: [ 'saga', 'sagaIndex', 'sagaType' ]
+		props: [ 'saga', 'sagaIndex', 'sagaType', 'quests' ]
 		, computed: {
 			adventurePackText () {
 				return `Adventure Pack: ${this.pack}`;
@@ -150,10 +147,8 @@
 				return ( this.saga.pack || { name: 'Free to Play' } ).name;
 			}
 			, sagaQuests () {
-				var quests = this.heroicQuests;
+				var quests = this.quests;
 				var sagaQuestIds = this.saga[ this.sagaType ].quests;
-
-				if ( this.sagaType === 'epic' ) quests = this.epicQuests;
 
 				quests = quests
 					.filter( quest => sagaQuestIds.contains( quest.id ) )
@@ -215,7 +210,10 @@
 			}
 		}
 		, methods: {
-			sagaQuestLevelClasses ( index, questCount ) {
+			getQuestMinimumLevel ( quest, questType ) {
+				return ( quest[ questType ].normal || quest[ questType ].casual ).level;
+			}
+			, sagaQuestLevelClasses ( index, questCount ) {
 				let classes = [
 					'font-size-100'
 					, 'height-22px'
