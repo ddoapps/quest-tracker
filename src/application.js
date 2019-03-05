@@ -68,7 +68,7 @@ Vue.use( VueResource );
 
 	function checkIfTheServiceWorkerHasNotBeenUpdated () {
 		return new Promise( ( resolve, reject ) => {
-			ajax( 'HEAD', './sw.js' ).then(
+			ajax( 'HEAD', './sw.js?q='+ Date.now() ).then(
 				xhr => {
 					if ( xhr.getResponseHeader( 'last-modified' ) === localStorage.getItem( SERVICE_WORKER_LAST_MODIFIED ) ) {
 						resolve();
@@ -93,7 +93,8 @@ Vue.use( VueResource );
 					resolve();
 				} else {
 					localStorage.removeItem( SERVICE_WORKER_LAST_MODIFIED );
-					reject();
+
+					ajax( 'HEAD', './api/unregister' ).then( reject, reject );
 				}
 			};
 
@@ -111,11 +112,11 @@ Vue.use( VueResource );
 	function registerTheServiceWorker () {
 		showTheElement( document.querySelector( '.firstRender .waitForApplicationRegistration' ), true );
 
-		ajax( 'HEAD', './sw.js' ).then(
+		ajax( 'HEAD', './sw.js?q='+ Date.now() ).then(
 			xhr => {
 				const serviceWorkerLastModified = xhr.getResponseHeader( 'last-modified' );
 
-				navigator.serviceWorker.register( './sw.js' ).then(
+				navigator.serviceWorker.register( './sw.js?q='+ Date.now() ).then(
 					() => {
 						showTheElement( document.querySelector( '.firstRender .applicationRegistrationSuccess' ), true );
 

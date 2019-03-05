@@ -205,6 +205,11 @@ const HEAD = 'HEAD';
 			, retrieveAllSagas () {
 				return functions.searchForSagas();
 			}
+			, unregister () {
+				return new Promise( resolve => {
+					self.registration.unregister().then( () => resolve( functions.respondWith( {}, 200 ) ) );
+				} );
+			}
 		};
 	
 		return api;
@@ -212,6 +217,7 @@ const HEAD = 'HEAD';
 
 	workbox.routing.registerRoute( /api\/initialize/, QuestTracker.initialize, GET );
 	workbox.routing.registerRoute( /api\/registered/, QuestTracker.registered, HEAD );
+	workbox.routing.registerRoute( /api\/unregister/, QuestTracker.unregister, HEAD );
 
 	workbox.routing.registerRoute( /api\/quests$/, QuestTracker.retrieveAllQuests, GET );
 	workbox.routing.registerRoute( /api\/sagas$/, QuestTracker.retrieveAllSagas, GET );
