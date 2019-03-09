@@ -47,7 +47,7 @@ Vue.use( VueResource );
 
 	// ============================================================================================
 
-	function ajax ( type, url ) {
+	function ajax ( type, url, addTimestamp ) {
 		return new Promise( ( resolve, reject ) => {
 			const xhr = new XMLHttpRequest();
 	
@@ -60,6 +60,10 @@ Vue.use( VueResource );
 					}
 				}
 			};
+
+			if ( addTimestamp === true ) {
+				url += '?q='+ Date.now();
+			}
 	
 			xhr.open( type, url, true );
 			xhr.send();
@@ -68,7 +72,7 @@ Vue.use( VueResource );
 
 	function checkIfTheServiceWorkerHasNotBeenUpdated () {
 		return new Promise( ( resolve, reject ) => {
-			ajax( 'HEAD', './sw.js?q='+ Date.now() ).then(
+			ajax( 'HEAD', './sw.js', true ).then(
 				xhr => {
 					if ( xhr.getResponseHeader( 'last-modified' ) === localStorage.getItem( SERVICE_WORKER_LAST_MODIFIED ) ) {
 						resolve();
@@ -81,7 +85,7 @@ Vue.use( VueResource );
 	}
 
 	function checkIfTheServiceWorkerIsCurrentlyActivated () {
-		return ajax( 'HEAD', './api/registered' );
+		return ajax( 'HEAD', './api/registered', true );
 	}
 
 	function checkIfTheServiceWorkerIsRegistered () {
@@ -94,7 +98,7 @@ Vue.use( VueResource );
 				} else {
 					localStorage.removeItem( SERVICE_WORKER_LAST_MODIFIED );
 
-					ajax( 'HEAD', './api/unregister' ).then( reject, reject );
+					ajax( 'HEAD', './api/unregister', true ).then( reject, reject );
 				}
 			};
 
@@ -112,7 +116,7 @@ Vue.use( VueResource );
 	function registerTheServiceWorker () {
 		showTheElement( document.querySelector( '.firstRender .waitForApplicationRegistration' ), true );
 
-		ajax( 'HEAD', './sw.js?q='+ Date.now() ).then(
+		ajax( 'HEAD', './sw.js', true ).then(
 			xhr => {
 				const serviceWorkerLastModified = xhr.getResponseHeader( 'last-modified' );
 
@@ -165,7 +169,7 @@ Vue.use( VueResource );
 	function initializeTheApplication () {
 		showTheElement( document.querySelector( '.firstRender .initializing' ), true );
 
-		ajax( 'GET', './api/initialize' ).then(
+		ajax( 'GET', './api/initialize', true ).then(
 			() => {
 				new Vue( {
 					el: document.querySelector( '.application' )

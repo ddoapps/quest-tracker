@@ -19,7 +19,7 @@ const HEAD = 'HEAD';
 
 				return Promise.all(
 					cacheNames
-						.filter( cacheName => !validCacheSet.has(cacheName) )
+						.filter( cacheName => !validCacheSet.has( cacheName ) )
 						.map( cacheName => caches.delete( cacheName ) )
 				);
 			} )
@@ -207,7 +207,17 @@ const HEAD = 'HEAD';
 			}
 			, unregister () {
 				return new Promise( resolve => {
-					self.registration.unregister().then( () => resolve( functions.respondWith( {}, 200 ) ) );
+					caches.keys().then( cacheNames => {
+						Promise.all(
+							cacheNames
+								.filter( cacheName => cacheName.indexOf( 'workbox' ) > -1 )
+								.map( cacheName => caches.delete( cacheName ) )
+						).then(
+							self.registration.unregister().then(
+								() => resolve( functions.respondWith( {}, 200 ) )
+							)
+						)
+					} );
 				} );
 			}
 		};
