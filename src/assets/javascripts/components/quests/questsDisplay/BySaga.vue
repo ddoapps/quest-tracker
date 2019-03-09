@@ -164,7 +164,7 @@
 					'border-top-left-radius-4px'
 					, 'border-top-right-radius-4px'
 					, 'font-size-130'
-					, 'height-66px'
+					, 'height-44px'
 					, 'layout-col-xs-11'
 					, `${this.sagaType}-background-color-dark-red-8`
 					, `${this.sagaType}-background-color-dark-purple-8`

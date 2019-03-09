@@ -12,6 +12,7 @@ export const dataModel = new Vuex.Store( {
 		, sagas: []
 		, theDisclaimerShouldBeShown: !localStorage.getItem( 'hideTheDisclaimer' )
 		, theQuestListingsOmniSearchShouldBeShown: false
+		, windowWidth: window.innerWidth
 	}
 	, getters: {
 		mainScrollTop: function ( state ) {
@@ -34,6 +35,9 @@ export const dataModel = new Vuex.Store( {
 		}
 		, theQuestListingsOmniSearchShouldBeShown: function ( state ) {
 			return state.theQuestListingsOmniSearchShouldBeShown;
+		}
+		, windowWidth: function ( state ) {
+			return state.windowWidth;
 		}
 	}
 	, mutations: {
@@ -58,6 +62,9 @@ export const dataModel = new Vuex.Store( {
 		}
 		, updateTheSagas: function ( state, sagas ) {
 			state.sagas = sagas;
+		}
+		, updateTheWindowWidth: function ( state ) {
+			state.windowWidth = window.innerWidth;
 		}
 	}
 } );

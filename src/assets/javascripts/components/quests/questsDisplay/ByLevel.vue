@@ -1,5 +1,5 @@
 <template>
-	<div class="height-132px margin-bottom-4px-last-child margin-top-4px">
+	<div :class="byLevelClasses">
 		<div class="font-color-white-0 font-size-0 layout-col-xs-12" v-if="questIsAlmostInView">
 			<div aria-hidden="true" class="font-size-100 font-weight-bold layout-col-xs-1 text-center vertical-align-bottom" v-text="questTypeFirstCharacter"></div>
 
@@ -34,6 +34,20 @@
 		, computed: {
 			adventurePackText () {
 				return `Adventure Pack: ${this.pack}`;
+			}
+			, byLevelClasses () {
+				let classes = [
+					'margin-bottom-4px-last-child'
+					, 'margin-top-4px'
+				];
+
+				if ( this.$store.getters.windowWidth < 420 ) {
+					classes.push( 'height-132px' );
+				} else {
+					classes.push( 'height-110px' );
+				}
+
+				return classes.join( ' ' );
 			}
 			, casual () {
 				return this.questByType.casual || { xp: SPACE };
@@ -228,16 +242,21 @@
 					'border-top-left-radius-4px'
 					, 'border-top-right-radius-4px'
 					, 'font-size-130'
-					, 'height-88px'
 					, 'layout-col-xs-11'
 					, `${this.questType}-background-color-dark-red-8`
 					, `${this.questType}-background-color-dark-purple-8`
 				];
 
+				if ( this.$store.getters.windowWidth < 420 ) {
+					classes.push( 'height-88px' );
+				} else {
+					classes.push( 'height-66px' );
+				}
+
 				return classes.join( ' ' );
 			}
 			, questIsAlmostInView () {
-				let questDisplayHeight = 132 + 4;
+				let questDisplayHeight = ( this.$store.getters.windowWidth < 420 ? 132 : 110 ) + 4;
 				let scrollDistance = this.$store.getters.mainScrollTop;
 				let offsetTop = this.questIndex * questDisplayHeight;
 				let adjustedOffsetTop = offsetTop - scrollDistance;

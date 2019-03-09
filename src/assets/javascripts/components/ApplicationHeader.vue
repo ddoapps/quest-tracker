@@ -7,7 +7,7 @@
 		</div>
 
 		<div class="layout-col-xs-1 line-height-3">
-			<i class="before-margin-left-2px layout-col-xs-12 background-color-dark-gray-8 font-size-xs-md icon icon-left-open"></i>
+			<i class="before-margin-left-2px layout-col-xs-12 background-color-dark-gray-8 font-size-xs-md icon icon-left-open text-center"></i>
 		</div>
 
 		<nav aria-label="Main Menu; list quests or sagas" :class="navClasses">
@@ -24,7 +24,7 @@
 		</nav>
 
 		<div class="layout-col-xs-1 line-height-3">
-			<i class="before-margin-left-4px:before layout-col-xs-12 background-color-dark-gray-8 font-size-xs-md icon icon-right-open"></i>
+			<i class="before-margin-left-4px:before layout-col-xs-12 background-color-dark-gray-8 font-size-xs-md icon icon-right-open text-center"></i>
 		</div>
 	</header>
 </template>

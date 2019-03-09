@@ -30,6 +30,8 @@
 			if ( !this.$store.getters.sagas.length ) {
 				this.$http.get( './api/sagas' ).then( xhr => this.$store.commit( 'updateTheSagas', xhr.body ) );
 			}
+
+			window.addEventListener( 'resize', e => this.$store.commit( 'updateTheWindowWidth' ) );
 		}
 	}
 </script>
