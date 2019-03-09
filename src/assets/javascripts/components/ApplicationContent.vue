@@ -40,7 +40,7 @@
 				return this.$store.getters.theDisclaimerShouldBeShown;
 			}
 			, theMainMenuIsShown () {
-				return !this.$store.getters.theQuestListingsOmniSearchShouldBeShown
+				return !this.$store.getters.theQuestListingsOmniSearchShouldBeShown && !this.theDisclaimerShouldBeShown;
 			}
 		}
 		, methods: {
