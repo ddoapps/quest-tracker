@@ -1,9 +1,9 @@
 {
 	"author": "github.com/taplar",
 	"dependencies": {
-		"babel-core": "6.26.x",
-		"babel-loader": "7.1.x",
-		"babel-preset-env": "1.7.x",
+		"@babel/core": "7.9.x",
+		"@babel/preset-env": "7.9.x",
+		"babel-loader": "8.1.x",
 		"clean-webpack-plugin": "1.0.x",
 		"copy-webpack-plugin": "4.6.x",
 		"css-loader": "2.1.x",
