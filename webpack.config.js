@@ -1,4 +1,4 @@
-const cleanPlugin = require( 'clean-webpack-plugin' );
+const { CleanWebpackPlugin } = require( 'clean-webpack-plugin' );
 const copyPlugin = require( 'copy-webpack-plugin' );
 const htmlPlugin = require( 'html-webpack-plugin' );
 const path = require( 'path' );
@@ -38,7 +38,7 @@ module.exports = {
 			filename: "[name].css",
 			chunkFilename: "[id].css"
 		} ),
-		new cleanPlugin( [ 'dist' ] ),
+		new CleanWebpackPlugin(),
 		new htmlPlugin( {
 			template: './src/index.html',
 			title: 'DDO Quest Tracker'
