@@ -1,10 +1,11 @@
 const { CleanWebpackPlugin } = require( 'clean-webpack-plugin' );
 const copyPlugin = require( 'copy-webpack-plugin' );
 const htmlPlugin = require( 'html-webpack-plugin' );
+const MiniCssExtractPlugin = require( 'mini-css-extract-plugin' );
 const path = require( 'path' );
+const VueLoaderPlugin = require('vue-loader/lib/plugin');
 const webpack = require( 'webpack' );
 const workboxPlugin = require( 'workbox-webpack-plugin' );
-const MiniCssExtractPlugin = require( 'mini-css-extract-plugin' );
 
 module.exports = {
 	entry: './src/application.js',
@@ -34,6 +35,7 @@ module.exports = {
 	},
 	performance: { hints: false },
 	plugins: [
+		new VueLoaderPlugin(),
 		new MiniCssExtractPlugin( {
 			filename: "[name].css",
 			chunkFilename: "[id].css"
