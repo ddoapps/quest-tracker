@@ -132,11 +132,18 @@
                     </tbody>
                 </table>
             </td>
+
+            <td>
+                <button type="button" class="normalize-id">Normalize ID</button>
+                <button type="button" class="normalize-levels">Normalize Levels</button>
+            </td>
         </template>
 
         <script>
             document.querySelector('#generateJSON').addEventListener('click', generateJSON);
             document.querySelector('#addNewQuest').addEventListener('click', addNewQuest);
+            document.querySelector('#questList').addEventListener('click', normalizeLevels);
+            document.querySelector('#questList').addEventListener('click', normalizeIds);
 
             fetch('./quests.json')
                 .then(response => response.json())
@@ -265,6 +272,30 @@
                     row.innerHTML = rowTemplate;
                     
                     document.querySelector('#questList > tbody').appendChild(row);
+                }
+
+                function normalizeIds(e) {
+                    if (!e.target.classList.contains('normalize-id')) return;
+
+                    const row = e.target.parentNode.parentNode;
+                    const name = row.querySelector('.name').value;
+
+                    row.querySelector('.id').value = name.toLowerCase().replace(/\s/g, '');
+                }
+
+                function normalizeLevels(e) {
+                    if (!e.target.classList.contains('normalize-levels')) return;
+
+                    const row = e.target.parentNode.parentNode;
+
+                    ['heroic', 'epic'].forEach(questType => {
+                        const subTable = row.querySelector('.'+ questType);
+                        const normalLevel = Number(subTable.querySelector('.normal-level').value);
+
+                        subTable.querySelector('.casual-level').value = Math.max(1, normalLevel - 1);
+                        subTable.querySelector('.hard-level').value = normalLevel + 1;
+                        subTable.querySelector('.elite-level').value = normalLevel + 2;
+                    });
                 }
         </script>
     </body>
