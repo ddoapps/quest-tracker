@@ -1,10 +1,10 @@
-const cleanPlugin = require( 'clean-webpack-plugin' );
+const { CleanWebpackPlugin } = require( 'clean-webpack-plugin' );
 const copyPlugin = require( 'copy-webpack-plugin' );
 const htmlPlugin = require( 'html-webpack-plugin' );
-const path = require( 'path' );
-const webpack = require( 'webpack' );
-const workboxPlugin = require( 'workbox-webpack-plugin' );
 const MiniCssExtractPlugin = require( 'mini-css-extract-plugin' );
+const VueLoaderPlugin = require('vue-loader/lib/plugin');
+const webpack = require('webpack');
+const workboxPlugin = require( 'workbox-webpack-plugin' );
 
 module.exports = {
 	entry: './src/application.js',
@@ -22,7 +22,7 @@ module.exports = {
 					{
 						loader: 'babel-loader',
 						options: {
-							presets: [ 'env' ]
+							presets: [ '@babel/preset-env' ]
 						}
 					}
 				]
@@ -34,6 +34,7 @@ module.exports = {
 	},
 	performance: { hints: false },
 	plugins: [
+		new VueLoaderPlugin(),
 		new webpack.DefinePlugin( {
 			'process.env': {
 				NODE_ENV: '"production"'
@@ -43,7 +44,7 @@ module.exports = {
 			filename: "[name].css",
 			chunkFilename: "[id].css"
 		} ),
-		new cleanPlugin( [ 'dist' ] ),
+		new CleanWebpackPlugin(),
 		new htmlPlugin( {
 			template: './src/index.html',
 			title: 'DDO Quest Tracker'

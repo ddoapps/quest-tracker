@@ -2,9 +2,7 @@ const { CleanWebpackPlugin } = require( 'clean-webpack-plugin' );
 const copyPlugin = require( 'copy-webpack-plugin' );
 const htmlPlugin = require( 'html-webpack-plugin' );
 const MiniCssExtractPlugin = require( 'mini-css-extract-plugin' );
-const path = require( 'path' );
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
-const webpack = require( 'webpack' );
 const workboxPlugin = require( 'workbox-webpack-plugin' );
 
 module.exports = {
